@@ -101,10 +101,11 @@ public class SampleControllerTest {
          *
          * produces를 설정할 경우,
          * produces에 설정한 미디어타입이 Accept 헤더에 들어있는 경우에만 이 요청이 처리됨.
+         * 해당 미디어타입으로 응답받기를 원하는 요청이 아닐 경우 406(Not Acceptable) 응답코드를 전달함.
          */
         mockMvc.perform(get("/hello")
             .contentType(MediaType.APPLICATION_JSON_UTF8) // 요청의 Content-Type에 미디어 타입 설정.
-            .accept(MediaType.APPLICATION_JSON)) // 응답으로 JSON을 원한다.
+            .accept(MediaType.TEXT_PLAIN_VALUE)) // 응답으로 JSON을 원한다.
                 .andDo(print())
                 .andExpect(status().isOk());
     }

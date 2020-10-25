@@ -53,12 +53,15 @@ public class SampleController {
     }*/
 
     /**
+     * 핸들러 메소드의 @GetMapping에..
+     *
      * consumes를 설정할 경우,
      * consumes에 설정한 미디어타입이 Content-Type 헤더에 들어있는 경우에만 이 요청이 처리됨.
      * 해당 미디어타입의 요청이 아닐 경우 415(Unsupported Type) 응답코드를 전달함.
      *
      * produces를 설정할 경우,
      * produces에 설정한 미디어타입이 Accept 헤더에 들어있는 경우에만 이 요청이 처리됨.
+     * 해당 미디어타입으로 응답받기를 원하는 요청이 아닐 경우 406(Not Acceptable) 응답코드를 전달함.
      */
     @GetMapping(
             value = "/hello",
