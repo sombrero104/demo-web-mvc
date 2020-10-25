@@ -77,5 +77,14 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 
 # 미디어 타입 맵핑
 
+### 특정한 타입의 데이터를 담고 있는 요청만 처리하는 핸들러
+- @RequestMapping(consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+- Content-Type 헤더로 필터링.
+- 매치되지 않는 경우에 415(Unsupported Media Type) 응답.
+
+### 특정한 타입의 응답을 만드는 핸들러
+- @RequestMapping(produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+- Accept 헤더로 필터링. (Accept를 아예 설정하지 않은 경우에도 응답.)
+- 매치되지 않는 경우에 406(Not Acceptable) 응답. 
 
 <br/><br/><br/>
