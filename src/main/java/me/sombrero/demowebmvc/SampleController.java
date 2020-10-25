@@ -26,7 +26,7 @@ public class SampleController {
         return "hello " + name;
     }*/
 
-    @GetMapping("/sombrero")
+    /*@GetMapping("/sombrero")
     @ResponseBody
     public String helloSombrero() {
         return "hello sombrero";
@@ -36,6 +36,18 @@ public class SampleController {
     @ResponseBody
     public String hello() {
         return "hello";
+    }*/
+
+    /**
+     * @GetMapping("/sombrero") 설정을 하면
+     * 스프링 MVC가 암묵적으로 @GetMapping({"/sombrero", "/sombrero.*"})로 설정을 해준다.
+     * 'sombrero.json', 'sombrero.xml', 'sombrero.html' 요청도 처리할 수 있게끔..
+     * 하지만 스프링부트는 기본적으로 이 기능을 사용하지 않도록 설정되어 있다.
+     */
+    @GetMapping({"/sombrero", "/sombrero.*"})
+    @ResponseBody
+    public String helloSombrero() {
+        return "hello sombrero";
     }
 
 }
