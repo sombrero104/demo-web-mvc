@@ -69,17 +69,26 @@ public class SampleControllerTest {
         /*mockMvc.perform(get("/hello/123/123"))
                 .andDo(print())
                 .andExpect(status().isOk());*/
-        mockMvc.perform(get("/hello/sombrero"))
+        /*mockMvc.perform(get("/hello/sombrero"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello sombrero"))
                 .andExpect(handler().handlerType(SampleController.class)) // 어떤 핸들러가 사용되는지 출력.
-                .andExpect(handler().methodName("helloSombrero")); // 핸들러의 메소드는 'helloSombrero'일 것이다.
+                .andExpect(handler().methodName("helloSombrero")); // 핸들러의 메소드는 'helloSombrero'일 것이다.*/
         /**
          * Handler:
          *  Type = me.sombrero.demowebmvc.SampleController
          *  Method = public java.lang.String me.sombrero.demowebmvc.SampleController.helloSombrero(java.lang.String)
          */
+
+
+        /**
+         * 스프링MVC에서는 확장자가 붙은 URI를 기본적으로 지원하지만,
+         * 스프링부트에서는 기본적으로 막아놨다.
+         */
+        mockMvc.perform(get("/hello/sombrero.json"))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 
 }

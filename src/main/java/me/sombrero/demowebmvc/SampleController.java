@@ -44,7 +44,8 @@ public class SampleController {
      * 'sombrero.json', 'sombrero.xml', 'sombrero.html', 'sombrero.zip' 요청도 처리할 수 있게끔..
      * 하지만 스프링부트는 기본적으로 이 기능을 사용하지 않도록 설정되어 있다.
      */
-    @GetMapping({"/sombrero", "/sombrero.*"})
+    // @GetMapping({"/sombrero", "/sombrero.*"})
+    @GetMapping("/sombrero")
     @ResponseBody
     public String helloSombrero() {
         return "hello sombrero";
