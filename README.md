@@ -55,6 +55,6 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - ?: 한 글자 ("/author/???" => "/author/123")
 - \*: 여러 글자 ("/author/*" => "/author/sombrero104")
 - \*\*: 여러 패스 ("/author/\*\*" => "/author/sombrero104/book")
-
+- /{name:정규식}: 정규표현식 맵핑. (@GetMapping("/{name:\[a-z]+}"))
 
 <br/><br/><br/>

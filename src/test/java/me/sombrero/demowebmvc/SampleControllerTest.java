@@ -61,6 +61,19 @@ public class SampleControllerTest {
         mockMvc.perform(get("/hi"))
                 .andDo(print())
                 .andExpect(status().isOk());*/
+        /*mockMvc.perform(get("/hello1"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+        /*mockMvc.perform(get("/hello/1"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+        /*mockMvc.perform(get("/hello/123/123"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+        mockMvc.perform(get("/hello/sombrero"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("hello sombrero"));
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 // @RequestMapping(method = RequestMethod.GET) // 이 안의 모든 핸들러에 GET만 허용.
+@RequestMapping("/hello")
 public class SampleController {
 
     /**
@@ -16,10 +17,14 @@ public class SampleController {
     @PutMapping
     @PatchMapping*/
     // @GetMapping({"/hello", "/hi"})
-    @GetMapping("/hello")
+    // @GetMapping("/hello?") // 한 글자.
+    // @GetMapping("/hello/?") // 한 글자.
+    // @GetMapping("/hello/**") // 여러 패스.
+    // @GetMapping("/**") // 여러 패스.
+    @GetMapping("/{name:[a-z]+}") // 정규 표현식으로 매핑.
     @ResponseBody
-    public String hello() {
-        return "hello";
+    public String hello(@PathVariable String name) {
+        return "hello " + name;
     }
 
 }
