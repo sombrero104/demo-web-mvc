@@ -68,6 +68,9 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - 이 기능은 권장하지 않는다. (스프링 부트에서는 기본으로 이 기능을 사용하지 않도록 설정해줌.)
     - 보안 이슈(RFD Attack (Reflected File Down Attack)) <br/>
     https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/reflected-file-download-a-new-web-attack-vector/
-    - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확함. 
+    - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확함.<br/>
+       (확장자인지 어떤 용도인지 모호함.<br/>
+       예전에는 응답으로 어떤 타입을 원하는지를 확장자로 사용하기도 했었는데, <br/>
+       최근에는 Accept 헤더로 사용하는 추세.)<br/>
 
 <br/><br/><br/>
