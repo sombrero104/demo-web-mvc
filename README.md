@@ -58,6 +58,6 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - /{name:정규식}: 정규표현식 맵핑. (@GetMapping("/{name:\[a-z]+}"))
 
 ## 패턴이 중복되는 경우에는?
-- 가장 구체적으로 맵핑되는 핸들러를 선택한다. 
+- 가장 구체적으로 맵핑되는 핸들러를 선택한다. ('/**' 보다는 '/구체적인경로'로 맵핑됨.)
 
 <br/><br/><br/>
