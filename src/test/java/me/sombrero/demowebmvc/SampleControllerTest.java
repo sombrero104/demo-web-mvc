@@ -10,8 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * @RunWith(SpringRunner.class)
@@ -73,7 +72,13 @@ public class SampleControllerTest {
         mockMvc.perform(get("/hello/sombrero"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("hello sombrero"));
+                .andExpect(content().string("hello sombrero"))
+                .andExpect(handler().handlerType(SampleController.class)); // 어떤 핸들러가 사용되는지 출력.
+        /**
+         * Handler:
+         *   Type = me.sombrero.demowebmvc.SampleController
+         *   Method = public java.lang.String me.sombrero.demowebmvc.SampleController.hello(java.lang.String)
+         */
     }
 
 }
