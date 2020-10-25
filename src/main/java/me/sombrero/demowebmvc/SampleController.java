@@ -56,8 +56,15 @@ public class SampleController {
      * consumes를 설정할 경우,
      * consumes에 설정한 미디어타입이 Content-Type 헤더에 들어있는 경우에만 이 요청이 처리됨.
      * 해당 미디어타입의 요청이 아닐 경우 415(Unsupported Type) 응답코드를 전달함.
+     *
+     * produces를 설정할 경우,
+     * produces에 설정한 미디어타입이 Accept 헤더에 들어있는 경우에만 이 요청이 처리됨.
      */
-    @GetMapping(value = "/hello", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(
+            value = "/hello",
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, // 요청 타입이 json이 미디어 타입인 경우에만 처리함.
+            produces = MediaType.TEXT_PLAIN_VALUE // '응답으로 plain text만 원한다'라고 하는 요청만 처리함.
+    )
     @ResponseBody
     public String hello() {
         return "hello";
