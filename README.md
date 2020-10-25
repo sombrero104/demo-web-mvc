@@ -60,4 +60,9 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 ## 패턴이 중복되는 경우에는?
 - 가장 구체적으로 맵핑되는 핸들러를 선택한다. ('/**' 보다는 '/구체적인경로'로 맵핑됨.)
 
+## URI 확장자 맵핑 지원
+- 이 기능은 권장하지 않는다. (스프링 부트에서는 기본으로 이 기능을 사용하지 않도록 설정해줌.)
+    - 보안 이슈(RFD Attack)
+    - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확함. 
+
 <br/><br/><br/>
