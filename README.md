@@ -64,7 +64,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - @GetMapping("/sombrero") 설정을 하면<br/>
 스프링 MVC가 암묵적으로 @GetMapping({"/sombrero", "/sombrero.*"})로 설정을 해준다.<br/>
 'sombrero.json', 'sombrero.xml', 'sombrero.html', 'sombrero.zip' 요청도 처리할 수 있게끔..<br/>
-하지만 스프링부트는 기본적으로 이 기능을 사용하지 않도록 설정되어 있다.<br/>
+하지만 스프링부트는 기본적으로 이 기능을 사용하지 않도록 설정되어 있다. (보안 이슈가 있어서..)<br/>
 - 이 기능은 권장하지 않는다. (스프링 부트에서는 기본으로 이 기능을 사용하지 않도록 설정해줌.)
     - 보안 이슈(RFD Attack)
     - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확함. 
