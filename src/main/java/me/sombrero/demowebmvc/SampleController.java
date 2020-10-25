@@ -21,10 +21,21 @@ public class SampleController {
     // @GetMapping("/hello/?") // 한 글자.
     // @GetMapping("/hello/**") // 여러 패스.
     // @GetMapping("/**") // 여러 패스.
-    @GetMapping("/{name:[a-z]+}") // 정규 표현식으로 매핑.
-    @ResponseBody
-    public String hello(@PathVariable String name) {
+    /*@GetMapping("/{name:[a-z]+}") // 정규 표현식으로 매핑.
+    public String hello(@PathVariable String name) { // 패스에서 파라미터를 받아옴.
         return "hello " + name;
+    }*/
+
+    @GetMapping("/sombrero")
+    @ResponseBody
+    public String helloSombrero() {
+        return "hello sombrero";
+    }
+
+    @GetMapping("/**")
+    @ResponseBody
+    public String hello() {
+        return "hello";
     }
 
 }
