@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -86,9 +87,20 @@ public class SampleControllerTest {
          * 스프링MVC에서는 확장자가 붙은 URI를 기본적으로 지원하지만,
          * 스프링부트에서는 기본적으로 막아놨다.
          */
-        mockMvc.perform(get("/hello/sombrero.json"))
+        /*mockMvc.perform(get("/hello/sombrero.json"))
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound());*/
+
+
+        /**
+         * 핸들러 메소드의 @GetMapping에 consumes를 설정할 경우,
+         * consumes에 설정한 미디어타입이 Content-Type 헤더에 들어있는 경우에만 이 요청이 처리됨.
+         * 해당 미디어타입의 요청이 아닐 경우 415(Unsupported Type) 응답코드를 전달함.
+         */
+        mockMvc.perform(get("/hello")
+            .contentType(MediaType.APPLICATION_JSON_UTF8)) // 요청의 Content-Type에 미디어 타입 설정.
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
 }

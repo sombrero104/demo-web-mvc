@@ -1,11 +1,12 @@
 package me.sombrero.demowebmvc;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 // @RequestMapping(method = RequestMethod.GET) // 이 안의 모든 핸들러에 GET만 허용.
-@RequestMapping("/hello")
+// @RequestMapping("/hello")
 public class SampleController {
 
     /**
@@ -45,10 +46,21 @@ public class SampleController {
      * 하지만 스프링부트는 기본적으로 이 기능을 사용하지 않도록 설정되어 있다.
      */
     // @GetMapping({"/sombrero", "/sombrero.*"})
-    @GetMapping("/sombrero")
+    /*@GetMapping("/sombrero")
     @ResponseBody
     public String helloSombrero() {
         return "hello sombrero";
+    }*/
+
+    /**
+     * consumes를 설정할 경우,
+     * consumes에 설정한 미디어타입이 Content-Type 헤더에 들어있는 경우에만 이 요청이 처리됨.
+     * 해당 미디어타입의 요청이 아닐 경우 415(Unsupported Type) 응답코드를 전달함.
+     */
+    @GetMapping(value = "/hello", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String hello() {
+        return "hello";
     }
 
 }
