@@ -37,5 +37,10 @@
 ### DELETE 요청
 - URI에 해당하는 리소스를 삭제할 때 사용한다.
 - idempotent(멱등): 동일한 DELETE 요청은 항상 동일한 응답을 리턴해야 한다. 
+<br/><br/><br/>
 
-<br/><br/>
+# URI, URL, URN ???
+<img src="./images/uri.png" width="70%"><br/>
+
+
+<br/><br/><br/>

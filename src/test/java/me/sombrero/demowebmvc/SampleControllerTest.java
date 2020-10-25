@@ -50,7 +50,7 @@ public class SampleControllerTest {
                 .andExpect(status().isOk());
         mockMvc.perform(put("/hello"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isMethodNotAllowed());
         mockMvc.perform(post("/hello"))
                 .andDo(print())
                 .andExpect(status().isMethodNotAllowed());
