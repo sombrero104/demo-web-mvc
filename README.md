@@ -71,6 +71,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
     - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확함.<br/>
        (확장자인지 어떤 용도인지 모호함.<br/>
        예전에는 응답으로 어떤 타입을 원하는지를 확장자로 사용하기도 했었는데, <br/>
-       최근에는 서버가 알아서 판단하는 Accept 헤더로 사용하는 추세.)<br/>
+       최근에는 서버가 알아서 판단하는 Accept 헤더로 사용하는 추세.<br/>
+       헤더에 값을 보내는 것이 불편한 상황이라면 파라미터로 사용 권장.)<br/>
 
 <br/><br/><br/>
