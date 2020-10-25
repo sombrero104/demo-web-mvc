@@ -53,8 +53,8 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 ## 요청 식별자로 맵핑하기
 - @RequestMapping은 다음의 패턴을 지원한다.
 - ?: 한 글자 ("/author/???" => "/author/123")
-- *: 여러 글자 ("/author/*" => "/author/sombrero104")
-- **: 여러 패스 ("/author/**" => "/author/sombrero104/book")
+- \*: 여러 글자 ("/author/*" => "/author/sombrero104")
+- \**: 여러 패스 ("/author/\**" => "/author/sombrero104/book")
 
 
 <br/><br/><br/>
