@@ -40,11 +40,10 @@
 <br/><br/><br/>
 
 # URI, URL, URN ???
+<img src="./images/uri.png" width="50%"><br/>
 - URI (Uniform Resource Identifier)
 - URL (Uniform Resource Locator)
 - URN (Uniform Resource Name)<br/>
-
-<img src="./images/uri.png" width="50%"><br/>
 https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-a-url-and-a-urn <br/>
 
 
