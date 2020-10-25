@@ -89,6 +89,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - Accept 헤더로 필터링. (Accept를 아예 설정하지 않은 경우에도 응답.)
 - 매치되지 않는 경우에 406(Not Acceptable) 응답. 
 
-### 클래스에 선언한 @RequestMapping에 사용한 것과 조합이 되지 않고, 메소드에 사용한 @RequestMapping의 설정으로 덮어쓴다. 
+### * 클래스에 선언한 @RequestMapping에 사용한 것과 조합이 되지 않고, 메소드에 사용한 @RequestMapping의 설정으로 덮어쓴다. 
+### * Not(!)
 
 <br/><br/><br/>
