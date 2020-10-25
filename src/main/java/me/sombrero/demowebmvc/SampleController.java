@@ -62,6 +62,7 @@ public class SampleController {
      * produces를 설정할 경우,
      * produces에 설정한 미디어타입이 Accept 헤더에 들어있는 경우에만 이 요청이 처리됨.
      * 해당 미디어타입으로 응답받기를 원하는 요청이 아닐 경우 406(Not Acceptable) 응답코드를 전달함.
+     * Accept 헤더가 설정되지 않은 경우에도 요청을 처리함.
      */
     @GetMapping(
             value = "/hello",
