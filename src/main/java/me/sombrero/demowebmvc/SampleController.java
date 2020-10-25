@@ -15,6 +15,7 @@ public class SampleController {
     /*@DeleteMapping
     @PutMapping
     @PatchMapping*/
+    // @GetMapping({"/hello", "/hi"})
     @GetMapping("/hello")
     @ResponseBody
     public String hello() {

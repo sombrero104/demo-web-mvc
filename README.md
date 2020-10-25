@@ -39,14 +39,22 @@
 - idempotent(멱등): 동일한 DELETE 요청은 항상 동일한 응답을 리턴해야 한다. 
 <br/><br/><br/>
 
-# URI, URL, URN ???
+# URI 패턴 맵핑
+
+### URI, URL, URN ???
 <img src="./images/uri.png" width="50%"><br/>
 - URI (Uniform Resource Identifier)
 - URL (Uniform Resource Locator)
 - URN (Uniform Resource Name)<br/>
 
 https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-a-url-and-a-urn <br/>
+<br/>
 
+## 요청 식별자로 맵핑하기
+- @RequestMapping은 다음의 패턴을 지원한다.
+- ?: 한 글자 ("/author/???" => "/author/123")
+- *: 여러 글자 ("/author/*" => "/author/sombrero104")
+- **: 여러 패스 ("/author/**" => "/author/sombrero104/book")
 
 
 <br/><br/><br/>

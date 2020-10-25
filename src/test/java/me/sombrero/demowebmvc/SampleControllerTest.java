@@ -45,7 +45,7 @@ public class SampleControllerTest {
          */
 
 
-        mockMvc.perform(get("/hello"))
+        /*mockMvc.perform(get("/hello"))
                 .andDo(print())
                 .andExpect(status().isOk());
         mockMvc.perform(put("/hello"))
@@ -53,7 +53,14 @@ public class SampleControllerTest {
                 .andExpect(status().isMethodNotAllowed());
         mockMvc.perform(post("/hello"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+                .andExpect(status().isMethodNotAllowed());*/
+
+        /*mockMvc.perform(get("/hello"))
+                .andDo(print())
+                .andExpect(status().isOk());
+        mockMvc.perform(get("/hi"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
     }
 
 }
