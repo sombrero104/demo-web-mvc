@@ -9,6 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -156,10 +160,18 @@ public class SampleControllerTest {
          *                          ===> GET, POST는 우리가 직접 컨트롤러에 만들어준 것.
          *                              HEAD, OPTIONS는 스프링에서 기본적으로 제공하는 것.
          */
+        String hasItems;
         mockMvc.perform(options("/hello")
                 .param("name", "sombrero104"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                // .andExpect(header().exists(HttpHeaders.ALLOW)); // 헤더에 ALLOW가 있는지 확인.
+                .andExpect(header().stringValues(HttpHeaders.ALLOW,
+                        hasItems(containsString("GET"),
+                                containsString("POST"),
+                                containsString("HEAD"),
+                                containsString("OPTIONS")
+                        )));
 
 
     }
