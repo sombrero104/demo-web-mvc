@@ -139,6 +139,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - Runtime: 클래스를 메모리에 읽어왔을 때까지 유지! 코드에서 이 정보를 바탕으로 특정 로직을 실행할 수 있다.<br/>
     자바의 기본 RetentionPolicy는 Class인데, 스프링에서는 모든 구성이 런타임 때 형성되기 때문에<br/>
     스프링에서 커스텀 애노테이션을 만들때에는 꼭 @Retention을 Runtime으로 설정해줘야 한다. <br/>
+    그냥 주석 정도의 역할로 사용하고 싶을 때에는 Source를 사용해도 된다. <br/>
 ### @Target
 - 해당 애노테이션을 어디에 사용할 수 있는지 결정한다.
 ### @Document
