@@ -146,7 +146,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - 해당 애노테이션을 사용한 코드의 문서에 그 애노테이션에 대한 정보를 표기할지 결정한다.<br/>
 - 예를 들어, 커스텀 애노테이션 @GetHelloMapping를 만들고,<br/>
     이 애노테이션의 메타 애노테이션으로 @Document를 설정한 후,<br/>
-    이 애노테이션을 SampleController에 있는 핸들러에서 사용하도록 작성하면<br/>
+    이 애노테이션을 SampleController에 있는 핸들러에서 사용하도록 작성하면,<br/>
     SampleController에 대한 javadoc을 만들 때 해당 핸들러 부분에<br/>
     커스텀 애노테이션인 @GetHelloMapping까지 표기가 된다. <br/>
 <br/><br/>
