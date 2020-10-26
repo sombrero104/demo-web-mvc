@@ -123,8 +123,18 @@ public class SampleControllerTest {
             .header(HttpHeaders.AUTHORIZATION, "111"))
                 .andDo(print())
                 .andExpect(status().isOk());*/
-        mockMvc.perform(get("/hello")
+        /*mockMvc.perform(get("/hello")
             .param("name", "sombrero104"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+
+
+        /**
+         * HEAD: 응답에 body를 보내지 않고 헤더만 보냄.
+         *  리소스를 받기 전에 사전에 리소스에 대한 정보를 확인하기 위해 사용.
+         */
+        mockMvc.perform(head("/hello")
+                .param("name", "sombrero104"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
