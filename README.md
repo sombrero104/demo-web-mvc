@@ -90,6 +90,6 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - 매치되지 않는 경우에 406(Not Acceptable) 응답. 
 
 ### * 클래스에 선언한 @RequestMapping에 사용한 것과 조합이 되지 않고, 메소드에 사용한 @RequestMapping의 설정으로 덮어쓴다. 
-### * Not(!)
+### * Not (!)을 사용해서 특정 미디어 타입이 아닌 경우로 맵핑 할 수도 있다. 
 
 <br/><br/><br/>
