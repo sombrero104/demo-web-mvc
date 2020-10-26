@@ -94,7 +94,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 <pre>
 @GetMapping(value = "/hello", headers = "!" + HttpHeaders.AUTHORIZATION)
 </pre>
-<br/><br/>
+<br/>
 
 ## 헤더와 매개변수
 - 특정한 헤더가 있는 요청을 처리하고 싶은 경우
@@ -109,7 +109,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
     - @RequestMapping(params = "!name")
 - 특정한 요청 매개변수 키값을 가지고 있는 요청을 처리하고 싶은 경우
     - @RequestMapping(params = "name=123")
-<br/><br/>
+<br/>
 
 ## HEAD와 OPTIONS 요청 처리
 우리가 구현하지 않아도 스프링 웹 MVC에서 자동으로 처리하는 HTTP Method.
