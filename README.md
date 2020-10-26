@@ -1,6 +1,9 @@
 # 스프링 MVC 활용
 <br/>
 
+# 요청 맵핑하기 
+<br/>
+
 ## HTTP Method
 - GET, POST, PUT, PATCH, DELETE, ...
 
