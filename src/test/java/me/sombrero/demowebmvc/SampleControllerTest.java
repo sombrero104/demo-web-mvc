@@ -178,11 +178,29 @@ public class SampleControllerTest {
                 .andDo(print())
                 .andExpect(header().stringValues(ACCEPT_ENCODING, "gzip"));*/
 
-        mockMvc.perform(get("/hello"))
+        /*mockMvc.perform(get("/hello"))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk());*/
 
 
+        /*mockMvc.perform(get("/events/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(1));*/
+
+
+        /**
+         * @MatrixVariable
+         * 핸들러 파라미터에 @MatrixVariable 추가.
+         *
+         * '/events/1;name=sombrero104'과 같이 요청할 수 있는 방법.
+         * 사용하려면 WebConfig에 configurePathMatch를 설정해줘야 함..
+         */
+        mockMvc.perform(get("/events/1;name=sombrero104"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(1))
+                .andExpect(jsonPath("name").value("sombrero104"));
     }
 
 }
