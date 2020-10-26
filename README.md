@@ -109,5 +109,16 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
     - @RequestMapping(params = "!name")
 - 특정한 요청 매개변수 키값을 가지고 있는 요청을 처리하고 싶은 경우
     - @RequestMapping(params = "name=123")
+<br/><br/>
+
+## HEAD와 OPTIONS 요청 처리
+우리가 구현하지 않아도 스프링 웹 MVC에서 자동으로 처리하는 HTTP Method.
+### HEAD
+- GET 요청과 동일하지만 응답 본문을 받아오지 않고 **_응답 헤더만_** 받아온다.
+### OPTIONS
+- 사용할 수 있는 HTTP Method 제공.
+- 서버 또는 특정 리소스가 제공하는 기능을 확인할 수 있다.
+- 서버는 Allow 응답 헤더에 사용할 수 있는 HTTP Method 목록을 제공해야 한다.
+<br/><br/>
 
 <br/><br/><br/>
