@@ -117,8 +117,9 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - GET 요청과 동일하지만 응답 본문(body)을 받아오지 않고 **_응답 헤더만_** 받아온다.
 - 리소스를 받기 전에 사전에 리소스에 대한 정보를 확인하기 위해 사용.
 ### OPTIONS
-- 사용할 수 있는 HTTP Method 제공.
 - 서버 또는 특정 리소스가 제공하는 기능을 확인할 수 있다.
+- 해당 서버가 살아있는지 해당 리소스에 대한 요청을 처리할 수 있는지 확인할 수 있다. 
+- 사용할 수 있는 HTTP Method 제공.
 - 서버는 Allow 응답 헤더에 사용할 수 있는 HTTP Method 목록을 제공해야 한다.
 <br/><br/>
 
