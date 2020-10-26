@@ -312,12 +312,28 @@ public class SampleController {
      * '/events/1;name=sombrero104'과 같이 요청할 수 있는 방법.
      * 사용하려면 uri에서 세미콜론(;)을 없애지 않도록 WebConfig에 configurePathMatch를 설정해줘야 함..
      */
-    @GetMapping("/events/{id}")
+    /*@GetMapping("/events/{id}")
     @ResponseBody
     public Event events(@PathVariable Integer id, @MatrixVariable String name) {
         Event event = new Event();
         event.setId(id);
         event.setName(name);
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+
+
+    /**
+     * @PathVariable("id")
+     *
+     * 파라미터 변수명(idValue)과 {id}가 같지 않을 경우
+     * uri의 {id}와 같게 @PathVariable("id")를 써주면 된다.
+     * 보통은 같게 맞춰주고 @PathVariable로 생략해서 씀..
+     */
+    @GetMapping("/events/{id}")
+    @ResponseBody
+    public Event events(@PathVariable("id") Integer idValue) {
+        Event event = new Event();
+        event.setId(idValue);
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }
 

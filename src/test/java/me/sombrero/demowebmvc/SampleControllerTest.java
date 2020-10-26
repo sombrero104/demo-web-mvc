@@ -196,11 +196,17 @@ public class SampleControllerTest {
          * '/events/1;name=sombrero104'과 같이 요청할 수 있는 방법.
          * 사용하려면 uri에서 세미콜론(;)을 없애지 않도록 WebConfig에 configurePathMatch를 설정해줘야 함..
          */
-        mockMvc.perform(get("/events/1;name=sombrero104"))
+        /*mockMvc.perform(get("/events/1;name=sombrero104"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1))
-                .andExpect(jsonPath("name").value("sombrero104"));
+                .andExpect(jsonPath("name").value("sombrero104"));*/
+
+
+        mockMvc.perform(get("/events/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(1));
     }
 
 }
