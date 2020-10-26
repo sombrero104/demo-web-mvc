@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -104,10 +105,15 @@ public class SampleControllerTest {
          * 해당 미디어타입으로 응답받기를 원하는 요청이 아닐 경우 406(Not Acceptable) 응답코드를 전달함.
          * Accept 헤더가 설정되지 않은 경우에도 요청을 처리함.
          */
-        mockMvc.perform(get("/hello")
+        /*mockMvc.perform(get("/hello")
             .contentType(MediaType.APPLICATION_JSON_UTF8) // 요청의 Content-Type에 미디어 타입 설정.
             // .accept(MediaType.TEXT_PLAIN_VALUE)) // 응답으로 plain text를 원한다.
         )
+                .andDo(print())
+                .andExpect(status().isOk());*/
+
+        mockMvc.perform(get("/hello")
+            .header(HttpHeaders.FROM, "localhost"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

@@ -1,5 +1,6 @@
 package me.sombrero.demowebmvc;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -64,11 +65,18 @@ public class SampleController {
      * 해당 미디어타입으로 응답받기를 원하는 요청이 아닐 경우 406(Not Acceptable) 응답코드를 전달함.
      * Accept 헤더가 설정되지 않은 경우에도 요청을 처리함.
      */
-    @GetMapping(
+    /*@GetMapping(
             value = "/hello",
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, // 요청 타입이 json이 미디어 타입인 경우에만 처리함.
             produces = MediaType.TEXT_PLAIN_VALUE // '응답으로 plain text만 원한다'라고 하는 요청만 처리함.
-    )
+    )*/
+
+    /**
+     * FROM이라는 헤더가 들어있는 요청만 처리하겠다는 뜻.
+     */
+    // @GetMapping(value = "/hello", headers = HttpHeaders.FROM)
+
+    @GetMapping(value = "/hello", headers = "!" + HttpHeaders.AUTHORIZATION)
     @ResponseBody
     public String hello() {
         return "hello";
