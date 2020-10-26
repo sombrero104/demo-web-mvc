@@ -95,9 +95,19 @@ public class SampleController {
      * name 파라미터 값이 'sombrero104'일 경우 요청을 처리하겠다는 뜻.
      * 파라미터 값이 다를 경우 400(Bad Request) 응답코드가 전달됨.
      */
-    @GetMapping(value = "/hello", params = "name=sombrero104")
+    // @GetMapping(value = "/hello", params = "name=sombrero104")
+
+
+
+    @GetMapping("/hello")
     @ResponseBody
     public String hello() {
+        return "hello";
+    }
+
+    @PostMapping("/hello")
+    @ResponseBody
+    public String helloPost() {
         return "hello";
     }
 

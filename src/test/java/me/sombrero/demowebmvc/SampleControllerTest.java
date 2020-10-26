@@ -133,10 +133,34 @@ public class SampleControllerTest {
          * HEAD: 응답에 body를 보내지 않고 헤더만 보냄.
          *  리소스를 받기 전에 사전에 리소스에 대한 정보를 확인하기 위해 사용.
          */
-        mockMvc.perform(head("/hello")
+        /*mockMvc.perform(head("/hello")
+                .param("name", "sombrero104"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+
+
+        /**
+         * OPTIONS:
+         * - 서버 또는 특정 리소스가 제공하는 기능을 확인할 수 있다.
+         * - 해당 서버가 살아있는지 해당 리소스에 대한 요청을 처리할 수 있는지 확인할 수 있다.
+         * - 사용할 수 있는 HTTP Method 제공.
+         * - 서버는 Allow 응답 헤더에 사용할 수 있는 HTTP Method 목록을 제공해야 한다.
+         */
+        /**
+         * 출력 결과:
+         *  MockHttpServletResponse:
+         *            Status = 200
+         *     Error message = null
+         *           Headers = [Allow:"GET,HEAD,POST,OPTIONS"]
+         *
+         *                          ===> GET, POST는 우리가 직접 컨트롤러에 만들어준 것.
+         *                              HEAD, OPTIONS는 스프링에서 기본적으로 제공하는 것.
+         */
+        mockMvc.perform(options("/hello")
                 .param("name", "sombrero104"))
                 .andDo(print())
                 .andExpect(status().isOk());
+
 
     }
 
