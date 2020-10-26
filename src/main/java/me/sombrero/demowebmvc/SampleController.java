@@ -76,7 +76,26 @@ public class SampleController {
      */
     // @GetMapping(value = "/hello", headers = HttpHeaders.FROM)
 
-    @GetMapping(value = "/hello", headers = "!" + HttpHeaders.AUTHORIZATION)
+    /**
+     * AUTHORIZATION이라는 헤더가 없으면 요청을 처리하겠다는 뜻.
+     */
+    // @GetMapping(value = "/hello", headers = "!" + HttpHeaders.AUTHORIZATION)
+
+    /**
+     * AUTHORIZATION이라는 헤더값이 111인 경우 요청을 처리하겠다는 뜻.
+     */
+    // @GetMapping(value = "/hello", headers = HttpHeaders.AUTHORIZATION + "=" + "111")
+
+    /**
+     * name이라는 파라미터가 있으면 요청을 처리하겠다는 뜻.
+     */
+    // @GetMapping(value = "/hello", params = "name")
+
+    /**
+     * name 파라미터 값이 'sombrero104'일 경우 요청을 처리하겠다는 뜻.
+     * 파라미터 값이 다를 경우 400(Bad Request) 응답코드가 전달됨.
+     */
+    @GetMapping(value = "/hello", params = "name=sombrero104")
     @ResponseBody
     public String hello() {
         return "hello";

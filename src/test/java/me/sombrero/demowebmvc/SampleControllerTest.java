@@ -112,10 +112,22 @@ public class SampleControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());*/
 
-        mockMvc.perform(get("/hello")
+
+
+
+        /*mockMvc.perform(get("/hello")
             .header(HttpHeaders.FROM, "localhost"))
                 .andDo(print())
+                .andExpect(status().isOk());*/
+        /*mockMvc.perform(get("/hello")
+            .header(HttpHeaders.AUTHORIZATION, "111"))
+                .andDo(print())
+                .andExpect(status().isOk());*/
+        mockMvc.perform(get("/hello")
+            .param("name", "sombrero104"))
+                .andDo(print())
                 .andExpect(status().isOk());
+
     }
 
 }
