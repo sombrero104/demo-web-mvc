@@ -99,7 +99,7 @@ public class SampleController {
 
 
 
-    @GetMapping("/hello")
+    /*@GetMapping("/hello")
     @ResponseBody
     public String hello() {
         return "hello";
@@ -108,6 +108,16 @@ public class SampleController {
     @PostMapping("/hello")
     @ResponseBody
     public String helloPost() {
+        return "hello";
+    }*/
+
+
+    /**
+     * 커스텀 애노테이션 만들기.
+     */
+    @GetHelloMapping
+    @ResponseBody
+    public String hello() {
         return "hello";
     }
 

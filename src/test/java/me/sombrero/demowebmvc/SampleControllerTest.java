@@ -160,8 +160,7 @@ public class SampleControllerTest {
          *                          ===> GET, POST는 우리가 직접 컨트롤러에 만들어준 것.
          *                              HEAD, OPTIONS는 스프링에서 기본적으로 제공하는 것.
          */
-        String hasItems;
-        mockMvc.perform(options("/hello")
+        /*mockMvc.perform(options("/hello")
                 .param("name", "sombrero104"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -171,7 +170,11 @@ public class SampleControllerTest {
                                 containsString("POST"),
                                 containsString("HEAD"),
                                 containsString("OPTIONS")
-                        )));
+                        )));*/
+
+        mockMvc.perform(get("/hello"))
+                .andDo(print())
+                .andExpect(status().isOk());
 
 
     }
