@@ -14,6 +14,7 @@ import java.util.Arrays;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.*;
+import static org.springframework.http.HttpHeaders.ACCEPT_ENCODING;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -171,6 +172,11 @@ public class SampleControllerTest {
                                 containsString("HEAD"),
                                 containsString("OPTIONS")
                         )));*/
+
+
+        /*mockMvc.perform(get("/hello"))
+                .andDo(print())
+                .andExpect(header().stringValues(ACCEPT_ENCODING, "gzip"));*/
 
         mockMvc.perform(get("/hello"))
                 .andDo(print())
