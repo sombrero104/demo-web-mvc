@@ -94,5 +94,20 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 <pre>
 @GetMapping(value = "/hello", headers = "!" + HttpHeaders.AUTHORIZATION)
 </pre>
+<br/><br/>
+
+## 헤더와 매개변수
+- 특정한 헤더가 있는 요청을 처리하고 싶은 경우
+    - @RequestMapping(headers = "key")
+- 특정한 헤더가 없는 요청을 처리하고 싶은 경우
+    - @RequestMapping(headers = "!key")
+- 특정한 헤더 키값이 있는 요청을 처리하고 싶은 경우
+    - @RequestMapping(headers = "key=123")
+- 특정한 요청 매개변수 키를 가지고 있는 요청을 처리하고 싶은 경우
+    - @RequestMapping(params = "name")
+- 특정한 요청 매개변수가 없는 요청을 처리하고 싶은 경우
+    - @RequestMapping(params = "!name")
+- 특정한 요청 매개변수 키값을 가지고 있는 요청을 처리하고 싶은 경우
+    - @RequestMapping(params = "name=123")
 
 <br/><br/><br/>
