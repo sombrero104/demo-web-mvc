@@ -137,7 +137,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - Source: 소스 코드까지만 유지. 즉, 컴파일하면 해당 애노테이션 정보는 사라진다.
 - Class: 컴파일한 .class 파일에도 유지. 즉, 런타임 시 클래스를 메모리로 읽어오면 해당 정보는 사라진다.
 - Runtime: 클래스를 메모리에 읽어왔을 때까지 유지! 코드에서 이 정보를 바탕으로 특정 로직을 실행할 수 있다.<br/>
-    자바의 기본 RetentionPolicy는 Class인데, 스프링에서는 모든 구성이 런타임때 형성되기 때문에<br/>
+    자바의 기본 RetentionPolicy는 Class인데, 스프링에서는 모든 구성이 런타임 때 형성되기 때문에<br/>
     스프링에서 커스텀 애노테이션을 만들때에는 꼭 @Retention을 Runtime으로 설정해줘야 한다. <br/>
 ### @Target
 - 해당 애노테이션을 어디에 사용할 수 있는지 결정한다.
