@@ -375,13 +375,17 @@ public class SampleController {
         return "events/form";
     }
 
-    @PostMapping("/events")
+    /*@PostMapping("/events")
     @ResponseBody
-    public Event getEvents(@RequestParam String name,
-                        @RequestParam Integer limit) {
+    public Event getEvents(@RequestParam String name, @RequestParam Integer limit) {
         Event event = new Event();
         event.setName(name);
         event.setLimit(limit);
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+    @PostMapping("/events")
+    @ResponseBody
+    public Event getEvents(@ModelAttribute Event event) {
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }
 }

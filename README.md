@@ -188,7 +188,16 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 - *{}: selection 표현식. (위 자원에서 선택한 것.)
 
 https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html <br/>
+<br/><br/>
 
-
+## @ModelAttribute
+- 여러 곳에 있는 단순 타입 데이터를 복합 타입 객체로 받아오거나 해당 객체를 새로 만들 때 사용할 수 있다.
+- 서블릿에서는 요청 매개변수를 받아오는 방법들에 대해 동일하게 판단하기 때문에..
+- URI 패스, 요청 매개변수, 세션 등 여러곳의 데이터를 하나의 복합 객체로 받아올 수 있어서 편리하다. 
+- @ModelAttribute 애노테이션을 생략할 수 있다. 
+- 값을 바인딩 할 수 없는 경우에는? (예를 들어, 받아와야 하는 매개변수 타입이 Integer로 선언되어 있는데 문자열이 들어왔을 경우)
+    - 400 에러 BindException 발생.
+- 바인딩 에러를 직접 다루고 싶은 경우, 
+    - BindingResult 타입의 아규먼ㅁ트를 바로 오른쪽에 추가한다. 
 
 <br/><br/><br/>
