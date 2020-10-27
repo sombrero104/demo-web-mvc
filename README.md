@@ -287,7 +287,8 @@ public class Event {
 <br/><br/>
 
 ## @SessionAttributes
-모델 정보를 HTTP 세션에 저장해주는 애노테이션.
+모델 정보를 HTTP 세션에 저장해주는 애노테이션.  <br/>
+(이 애노테이션이 설정된 해당 클래스 안에서만 @SessionAttributes에 정의한 이름에 대한 모델을 저장해줌..) <br/>
 - HttpSession을 직접 사용할 수도 있지만..
 - 이 애노테이션에 설정한 이름에 해당하는 모델 정보를 자동으로 세션에 넣어준다. 
 - @ModelAttribute는 세션에 있는 데이터도 바인딩한다.
@@ -429,7 +430,8 @@ public String getEvents(Model model) {
 </pre>
 <br/><br/>
 
-
+## @SessionAttribute
+@SessionAttributes와는 완전히 다른 기능이다. (s가 안붙음! 헷갈림 주의!) <br/>
 
 
 <br/><br/><br/>
