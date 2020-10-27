@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
@@ -385,7 +386,7 @@ public class SampleController {
     }*/
     @PostMapping("/events")
     @ResponseBody
-    public Event getEvents(@ModelAttribute Event event) {
+    public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) {
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }
 }

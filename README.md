@@ -200,5 +200,9 @@ https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html <br/>
     - 400 에러 BindException 발생.
 - 바인딩 에러를 직접 다루고 싶은 경우, 
     - BindingResult 타입의 아규먼트를 바로 오른쪽에 추가한다. 
+    <pre>
+    public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) { ... }
+    </pre>
+    - 이렇게 선언하면 bindingResult 변수에 바인딩 관련 에러가 담겨온다. 
 
 <br/><br/><br/>
