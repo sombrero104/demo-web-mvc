@@ -417,6 +417,10 @@ public class SampleController {
         return "redirect:/events/list"; // [폼 서브밋 재발 방지]
     }
 
+    /**
+     * 이렇게 리스트 페이지를 분리해서 리스트 페이지로 redirect하면
+     * form 페이지에서 폼 서브밋 후 리스트 페이지로 와서 새로고침을 눌러도 서브밋이 다시 발생하지 않는다.
+     */
     @GetMapping("/events/list")
     public String getEvents(Model model) {
 
