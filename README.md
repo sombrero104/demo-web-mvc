@@ -314,7 +314,8 @@ public class SampleController {
          * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
          *
          * 'model.addAttribute("event", newEvent);' 처럼 모델 애트리뷰트에 추가된,
-         * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
+         * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 
+         * @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
          *
          * 세션에 데이터를 넣는 이유?
          * 여러 페이지에서 유지되어야 하는 정보인 장바구니 기능과 같은 경우나,
