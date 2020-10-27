@@ -251,6 +251,7 @@ public class Event {
 public Event getEvents(@Validated(Event.ValidateLimit.class) 
     @ModelAttribute Event event, BindingResult bindingResult) { ... }
 </pre>
+<br/>
 
 ## @Validated, BindingResult, 타임리프로 Form 값 검증
 <pre>
@@ -281,6 +282,7 @@ public class Event {
     ❮input type="submit" value="Create" /❯
 ❮/form❯
 </pre>
+실행한 후 폼 값을 잘못 입력하면 아래와 같이 타임리프에서 제공하는 메세지가 자동으로 출력된다.<br/>
 <img src="./images/valid_form.png" width="55%"><br/>
 
 <br/><br/><br/>
