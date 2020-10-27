@@ -433,5 +433,13 @@ public String getEvents(Model model) {
 ## @SessionAttribute
 @SessionAttributes와는 완전히 다른 기능이다. (s가 안붙음! 헷갈림 주의!) <br/>
 
+## @SessionAttributes vs @SessionAttribute
+@SessionAttributes와의 다른점은.. <br/>
+@SessionAttributes는 애노테이션의 정의된 해당 클래스 내에서만 적용이 된다. (해당 클래스 내에서만 모델에 있는 정보를 세션에 저장해줌.) <br/>
+@SessionAttributes는 여러 컨트롤러에 걸쳐서 적용해주거나 하지 않는다.  <br/>
+만약, 컨트롤러 밖에서 서블릿 필터나.. 스프링이 제공하는 인터셉터 같은 곳에서..  <br/>
+세션에 뭔가를 넣어 놓았을 경우, 그것을 가져와서 쓰고 싶은 경우, @SessionAttribute를 사용할 수 있다.  <br/>
+
+<br/><br/>
 
 <br/><br/><br/>
