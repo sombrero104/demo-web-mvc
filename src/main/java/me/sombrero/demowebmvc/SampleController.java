@@ -19,10 +19,7 @@ import javax.servlet.http.PushBuilder;
 import javax.validation.Valid;
 import java.io.*;
 import java.time.ZoneId;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.TimeZone;
+import java.util.*;
 
 @Controller
 // @RequestMapping(method = RequestMethod.GET) // 이 안의 모든 핸들러에 GET만 허용.
@@ -406,10 +403,16 @@ public class SampleController {
 
 
     @PostMapping("/events")
-    public String getEvents(@Validated @ModelAttribute Event event, BindingResult bindingResult) {
+    public String createEvents(@Validated @ModelAttribute Event event,
+                            BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             return "/events/form"; // form 페이지로..
         }
+
+        List<Event> eventList = new ArrayList<>();
+        eventList.add(event);
+        model.addAttribute("eventList", eventList);
+
         return "/events/list";
     }
 
