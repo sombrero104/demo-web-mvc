@@ -169,11 +169,11 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 핸들러에 @RequestParam을 설정해서 요청 매개변수(파라미터)를 받음. <br/>
 @RequestParam 애노테이션을 생략할 수도 있으나, 헷갈릴 수도 있기 때문에 생략하지 않는 것을 권장. <br/>
 <pre>
-@RequestParam(required = true)
+@RequestParam(required = true) String name
 </pre>
 위 처럼 required 옵션은 기본적으로 true임.<br/>
 <pre>
-@RequestParam(required = false, defaultValue = "sombrero104")
+@RequestParam(required = false, defaultValue = "sombrero104") String name
 </pre>
 위 처럼 해당 파라미터 값이 없어도 되고, 없는 경우에는 기본값으로 'sombrero104'를 쓰겠다고 할수도 있음. <br/>
 <pre>
