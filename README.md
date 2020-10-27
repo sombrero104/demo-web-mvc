@@ -204,6 +204,7 @@ https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html <br/>
     public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) { ... }
     </pre>
     - 이렇게 선언하면 bindingResult 변수에 바인딩 관련 에러를 담아주고, 요청은 정상적으로 처리된다. 
+<br/>
 
 ## @Valid
 - 바인딩 이후(바인딩은 정상적으로 수행되었지만)에 검증 작업을 추가로 하고 싶은 경우 사용. 
@@ -227,6 +228,7 @@ mockMvc.perform(post("/events")
         .andExpect(jsonPath("name").value("sombrero104"));
 </pre>
 - bindingResult에 에러가 담겨지며, 응답은 정상적으로 200 응답코드이고, limit의 값은 -10이 나온다. 
+<br/>
 
 ## @Validated
 
