@@ -329,12 +329,19 @@ public class SampleController {
      * uri의 {id}와 같게 @PathVariable("id")를 써주면 된다.
      * 보통은 같게 맞춰주고 @PathVariable로 생략해서 씀..
      */
-    @GetMapping("/events/{id}")
+    /*@GetMapping("/events/{id}")
     @ResponseBody
     public Event events(@PathVariable("id") Integer idValue) {
         Event event = new Event();
         event.setId(idValue);
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
-    }
+    }*/
 
+
+    @GetMapping("/events/{id}")
+    @ResponseBody
+    public Event events(@RequestParam String name) {
+        Event event = new Event();
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }
 }
