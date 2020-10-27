@@ -180,8 +180,9 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 @RequestParam(value = "name", required = false, defaultValue = "sombrero104") String nameValue
 </pre>
 위 처럼 파라미터 변수명이 다를 경우 value에 이름을 줄수도 있음. (하지만 그냥 파라미터명과 변수명을 같게 하는 것을 권장.)<br/>
+<br/><br/>
 
-## 타임리프
+### * 타임리프 표현식 
 - @{}: 링크 URL 표현식.
 - ${}: variable 표현식. (자원)
 - *{}: selection 표현식. (위 자원에서 선택한 것.)
