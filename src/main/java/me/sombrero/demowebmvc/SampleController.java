@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.PushBuilder;
 import javax.validation.Valid;
 import java.io.*;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -531,7 +532,13 @@ public class SampleController {
     }
 
     @GetMapping("/events/list")
-    public String getEvents(Model model) {
+    public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // (권장.)
+    // public String getEvents(Model model, HttpSession httpSession) { // (비추. 로우레벨.)
+        System.out.println("##### visitTime: " + visitTime); // @SessionAttribute로 visitTime 출력. (권장.)
+        // System.out.println("##### visitTime: " + httpSession.getAttribute("visitTime")); // HttpSession으로 visitTime 출력. (비추. 로우레벨.)
+        // HttpSession으로 visitTime을 꺼내올 때의 단점은 반환값이 Object이기 때문에 시간으로 타입 컨버전이 필요하다.
+        // 또 LocalDateTime으로 받아와야 시간 관련해서 api를 제공받을 수 있어서 편리하다.
+
         Event event = new Event();
         event.setName("sombrero104");
         event.setLimit(10);
