@@ -283,6 +283,6 @@ public class Event {
 ❮/form❯
 </pre>
 실행한 후 폼 값을 잘못 입력하면, 아래와 같이 타임리프에서 제공하는 메세지가 자동으로 출력된다.<br/><br/>
-<img src="./images/valid_form.png" width="55%"><br/>
+<img src="./images/valid_form.png" width="50%"><br/>
 
 <br/><br/><br/>
