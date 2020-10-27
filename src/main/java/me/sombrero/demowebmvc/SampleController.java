@@ -340,7 +340,7 @@ public class SampleController {
 
     @GetMapping("/events/{id}")
     @ResponseBody
-    public Event events(@RequestParam(required = true) String name) {
+    public Event events(@RequestParam(required = false, defaultValue = "sombrero104") String name) {
         Event event = new Event();
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }
