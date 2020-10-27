@@ -368,7 +368,23 @@ public class SampleController {
 
 
 
-    @GetMapping("/events/form")
+    /**
+     * 아래 처럼 'httpSession.setAttribute("event", newEvent);'로 작성하지 않아도
+     * (HttpSession을 인자로 받아서 사용하는 것은 로우레벨..)
+     * 컨트롤러에 애노테이션 '@SessionAttributes({"event"})'를 설정하면
+     * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
+     *
+     * 'model.addAttribute("event", newEvent);' 처럼 모델 애트리뷰트에 추가된,
+     * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
+     *
+     * 세션에 데이터를 넣는 이유?
+     * 여러 페이지에서 유지되어야 하는 정보인 장바구니 기능과 같은 경우나,
+     * 또는 어떤 데이터를 생성할 때 여러 페이지에 걸쳐서 만들어야 하는 경우,
+     * 입력받아야 하는 값이 많아서 여러 화면(페이지)에 나눠서 폼을 만들어야 하는 경우,
+     * (@ModelAttribute는 세션에 있는 데이터도 바인딩한다.)
+     *
+     */
+    /*@GetMapping("/events/form")
     // public String eventsForm(Model model, HttpSession httpSession) {
     public String eventsForm(Model model) {
         // Form Backing Object
@@ -377,24 +393,8 @@ public class SampleController {
         newEvent.setLimit(50);
         model.addAttribute("event", newEvent);
         // httpSession.setAttribute("event", newEvent); // 세션에 event 저장하기.
-        /**
-         * 위 처럼 'httpSession.setAttribute("event", newEvent);'로 작성하지 않아도
-         * (HttpSession을 인자로 받아서 사용하는 것은 로우레벨..)
-         * 컨트롤러에 애노테이션 '@SessionAttributes({"event"})'를 설정하면
-         * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
-         *
-         * 'model.addAttribute("event", newEvent);' 처럼 모델 애트리뷰트에 추가된,
-         * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
-         *
-         * 세션에 데이터를 넣는 이유?
-         * 여러 페이지에서 유지되어야 하는 정보인 장바구니 기능과 같은 경우나,
-         * 또는 어떤 데이터를 생성할 때 여러 페이지에 걸쳐서 만들어야 하는 경우,
-         * 입력받아야 하는 값이 많아서 여러 화면(페이지)에 나눠서 폼을 만들어야 하는 경우,
-         * (@ModelAttribute는 세션에 있는 데이터도 바인딩한다.)
-         *
-         */
         return "events/form";
-    }
+    }*/
 
     /*@PostMapping("/events")
     @ResponseBody
@@ -421,9 +421,7 @@ public class SampleController {
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }*/
 
-
-
-    @PostMapping("/events")
+    /*@PostMapping("/events")
     public String createEvents(@Validated @ModelAttribute Event event,
                                BindingResult bindingResult,
                                SessionStatus sessionStatus) {
@@ -431,27 +429,23 @@ public class SampleController {
             return "/events/form"; // form 페이지로..
         }
 
-        /**
-         * [폼 서브밋 재발 방지]
-         * 1. 원랜 이곳에서 DB에 event 데이터를 저장. (지금은 DB가 없기 때문에..)
-         */
+        // [폼 서브밋 재발 방지]
+        // 1. 원랜 이곳에서 DB에 event 데이터를 저장. (지금은 DB가 없기 때문에..)
 
         sessionStatus.setComplete(); // 폼 처리가 끝났을 때 세션이 만료되도록 함. (세션을 비우도록 함.)
         return "redirect:/events/list"; // [폼 서브밋 재발 방지]
-    }
+    }*/
 
     /**
      * 이렇게 리스트 페이지를 분리해서 리스트 페이지로 redirect하면
      * form 페이지에서 폼 서브밋 후 리스트 페이지로 와서 새로고침을 눌러도 서브밋이 다시 발생하지 않는다.
      */
-    @GetMapping("/events/list")
+    /*@GetMapping("/events/list")
     public String getEvents(Model model) {
 
-        /**
-         * [폼 서브밋 재발 방지]
-         * 2. 원랜 이곳에서 1에서 저장한 event 데이터를 읽어옴. (지금은 DB가 없기 때문에..)
-         *      DB에서 event 데이터를 읽어왔다고 가정..
-         */
+        // [폼 서브밋 재발 방지]
+        // 2. 원랜 이곳에서 1에서 저장한 event 데이터를 읽어옴. (지금은 DB가 없기 때문에..)
+        // DB에서 event 데이터를 읽어왔다고 가정..
         Event event = new Event();
         event.setName("sombrero104");
         event.setLimit(10);
@@ -461,6 +455,44 @@ public class SampleController {
         model.addAttribute("eventList", eventList);
 
         return "/events/list";
+    }*/
+
+
+
+
+
+    /**
+     * [ 여러개의 페이지에 있는 폼에서 입력 값 받아오기. ]
+     */
+
+    /**
+     * name 값만 받는 form
+     */
+    @GetMapping("/events/form/name")
+    public String eventsFormName(Model model) {
+        Event newEvent = new Event();
+        newEvent.setLimit(50);
+        model.addAttribute("event", newEvent);
+        // @SessionAttributes({"event"}) 설정으로 인해 위 medel에 저장된 event가 세션에도 들어감.
+        // 때문에 form-name 페이지에서 값을 수정하면 세션에도 동일하게 적용됨.
+        return "events/form-name";
+    }
+
+    /**
+     * @ModelAttribute가 세션에 있는 정보도 바인딩 받기 때문에
+     * form-name 페이지에서 수정한 후 모델에 저장했던 event도 세션에 들어있기 때문에 바인딩함.
+     */
+    @PostMapping("/events/form/name")
+    public String createEventsNameSubmit(
+                    @Validated @ModelAttribute Event event, // @ModelAttribute가 세션에 있는 정보도 바인딩 받음.
+                               BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
+            return "/events/form-name"; // form-name 페이지로..
+        }
+        // name 값을 입력받는 form 페이지 에서 name 값을 받고,
+        // 별 문제가 없으면 (에러가 없으면)
+        // 아래처럼 이번엔 limit을 입력받는 form 페이지로 이동하게 한다.
+        return "redirect:/events/form/limit"; // limit을 입력받는 form 페이지.
     }
 
 }
