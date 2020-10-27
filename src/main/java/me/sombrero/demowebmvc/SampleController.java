@@ -15,6 +15,7 @@ import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.PushBuilder;
 import javax.validation.Valid;
 import java.io.*;
@@ -24,6 +25,7 @@ import java.util.*;
 @Controller
 // @RequestMapping(method = RequestMethod.GET) // 이 안의 모든 핸들러에 GET만 허용.
 // @RequestMapping("/hello")
+@SessionAttributes({"event"})
 public class SampleController {
 
     /**
@@ -366,12 +368,19 @@ public class SampleController {
 
 
     @GetMapping("/events/form")
+    // public String eventsForm(Model model, HttpSession httpSession) {
     public String eventsForm(Model model) {
         // Form Backing Object
         // 폼에 채워질 데이터를 받아오는 객체를 제공.
         Event newEvent = new Event();
         newEvent.setLimit(50);
         model.addAttribute("event", newEvent);
+        // httpSession.setAttribute("event", newEvent); // 세션에 event 저장하기.
+        /**
+         * 위 처럼 'httpSession.setAttribute("event", newEvent);'로 작성하지 않아도
+         * 컨트롤러에 애노테이션 '@SessionAttributes({"event"})'를 설정하면
+         * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
+         */
         return "events/form";
     }
 
