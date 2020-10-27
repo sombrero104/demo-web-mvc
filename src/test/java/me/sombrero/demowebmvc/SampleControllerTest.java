@@ -208,6 +208,13 @@ public class SampleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1));*/
 
+        mockMvc.perform(post("/events")
+                    .param("name", "sombrero104")
+                    .param("limit", "20"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("sombrero104"));
+
     }
 
 }

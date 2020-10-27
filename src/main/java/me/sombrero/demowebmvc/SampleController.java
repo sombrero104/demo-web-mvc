@@ -338,10 +338,50 @@ public class SampleController {
     }*/
 
 
-    @GetMapping("/events/{id}")
+
+    /*@PostMapping("/events")
     @ResponseBody
-    public Event events(@RequestParam(value = "name", required = false, defaultValue = "sombrero104") String nameValue) {
+    public Event events(@RequestParam Map<String, String> params) {
         Event event = new Event();
+        event.setName(params.get("name"));
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+
+    /*@PostMapping("/events")
+    @ResponseBody
+    public Event events(Event event) {
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+
+    /*@PostMapping("/events")
+    @ResponseBody
+    public Event events(@RequestParam String name,
+                        @RequestParam Integer limit) {
+        Event event = new Event();
+        event.setName(name);
+        event.setLimit(limit);
+        return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+
+
+
+    @GetMapping("/events/form")
+    public String eventsForm(Model model) {
+        // Form Backing Object
+        // 폼에 채워질 데이터를 받아오는 객체를 제공.
+        Event newEvent = new Event();
+        newEvent.setLimit(50);
+        model.addAttribute("event", newEvent);
+        return "events/form";
+    }
+
+    @PostMapping("/events")
+    @ResponseBody
+    public Event getEvents(@RequestParam String name,
+                        @RequestParam Integer limit) {
+        Event event = new Event();
+        event.setName(name);
+        event.setLimit(limit);
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }
 }
