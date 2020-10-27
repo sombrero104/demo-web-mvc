@@ -8,7 +8,7 @@
     <!-- name 값만 받는 form -->
     <form action="#" th:action="@{/events/form/name}" method="post" th:object="${event}">
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect name</p>
-        <input type="text" title="name" th:field="*{name}" />
+        Name: <input type="text" title="name" th:field="*{name}" />
         <input type="submit" value="Create" />
     </form>
 </body>

@@ -470,9 +470,7 @@ public class SampleController {
      */
     @GetMapping("/events/form/name")
     public String eventsFormName(Model model) {
-        Event newEvent = new Event();
-        newEvent.setLimit(50);
-        model.addAttribute("event", newEvent);
+        model.addAttribute("event", new Event());
         // @SessionAttributes({"event"}) 설정으로 인해 위 medel에 저장된 event가 세션에도 들어감.
         // 때문에 form-name 페이지에서 값을 수정하면 세션에도 동일하게 적용됨.
         return "events/form-name";
@@ -493,6 +491,52 @@ public class SampleController {
         // 별 문제가 없으면 (에러가 없으면)
         // 아래처럼 이번엔 limit을 입력받는 form 페이지로 이동하게 한다.
         return "redirect:/events/form/limit"; // limit을 입력받는 form 페이지.
+    }
+
+    /**
+     * limit 값만 받는 form
+     * @ModelAttribute로 세션에 있는 event를 가져온다.
+     */
+    @GetMapping("/events/form/limit")
+    public String eventsFormLimit(@ModelAttribute Event event, Model model) { // @ModelAttribute로 세션에 있는 event를 가져온다.
+        model.addAttribute("event", event); // 세션에서 받은 event를 그대로 전달.
+        // @SessionAttributes({"event"}) 설정으로 인해 위 medel에 저장된 event가 세션에도 들어감.
+        // 때문에 form-limit 페이지에서 값을 수정하면 세션에도 동일하게 적용됨.
+        return "events/form-limit";
+    }
+
+    /**
+     * @ModelAttribute가 세션에 있는 정보도 바인딩 받기 때문에
+     * form-limit 페이지에서 수정한 후 모델에 저장했던 event도 세션에 들어있기 때문에 바인딩함.
+     */
+    @PostMapping("/events/form/limit")
+    public String createEventsLimitSubmit(
+            @Validated @ModelAttribute Event event, // @ModelAttribute가 세션에 있는 정보도 바인딩 받음.
+            BindingResult bindingResult,
+            SessionStatus sessionStatus) {
+        if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
+            return "/events/form-limit"; // form-limit 페이지로..
+        }
+        // limit 값을 입력받는 form 페이지 에서 name 값을 받고,
+        // 별 문제가 없으면 (에러가 없으면)
+        // 세션에 있는 정보를 지워주고..
+        sessionStatus.setComplete(); // 세션 비우기.
+
+        // 마지막으로 list 페이지를 보여줌.
+        return "redirect:/events/list"; // list 페이지를 보여줌.
+    }
+
+    @GetMapping("/events/list")
+    public String getEvents(Model model) {
+        Event event = new Event();
+        event.setName("sombrero104");
+        event.setLimit(10);
+
+        List<Event> eventList = new ArrayList<>();
+        eventList.add(event);
+        model.addAttribute("eventList", eventList);
+
+        return "/events/list";
     }
 
 }
