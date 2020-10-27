@@ -215,9 +215,16 @@ public class SampleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104"));*/
 
+        /*mockMvc.perform(post("/events")
+                .param("name", "sombrero104")
+                .param("limit", "문자열")) // @BindingResult 테스트.
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("sombrero104"));*/
+
         mockMvc.perform(post("/events")
                 .param("name", "sombrero104")
-                .param("limit", "문자열")) // BindingResult 테스트.
+                .param("limit", "-10")) // @Valid 테스트.
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104"));

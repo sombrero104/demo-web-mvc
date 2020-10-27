@@ -15,6 +15,7 @@ import org.springframework.web.servlet.View;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.PushBuilder;
+import javax.validation.Valid;
 import java.io.*;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -386,7 +387,7 @@ public class SampleController {
     }*/
     @PostMapping("/events")
     @ResponseBody
-    public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) {
+    public Event getEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             System.out.println("=====================================================================");

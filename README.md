@@ -205,4 +205,21 @@ https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html <br/>
     </pre>
     - 이렇게 선언하면 bindingResult 변수에 바인딩 관련 에러를 담아주고, 요청은 정상적으로 처리된다. 
 
+## @Valid
+- 바인딩 이후(바인딩은 정상적으로 수행되었지만)에 검증 작업을 추가로 하고 싶은 경우 사용. 
+- @Valid에서 발생한 에러 역시 bindingResult에 담아준다. 
+<pre>
+public Event getEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) { ... }
+</pre>
+<pre>
+public class Event {
+    @Min(0) // 인원수 값을 넣을 때 최소 0명 이상은 되어야 한다고 알려줌. @Valid에서 검증함.
+    private Integer limit;
+    ...
+}
+</pre>
+
+## @Validated
+
+
 <br/><br/><br/>
