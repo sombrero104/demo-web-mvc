@@ -218,6 +218,15 @@ public class Event {
     ...
 }
 </pre>
+<pre>
+mockMvc.perform(post("/events")
+        .param("name", "sombrero104")
+        .param("limit", "-10")) // @Valid 테스트. 마이너스 인원을 준 경우. 
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("name").value("sombrero104"));
+</pre>
+- bindingResult에 에러가 담겨지며, 응답은 정상적으로 200 응답코드이고, limit의 값은 -10이 나온다. 
 
 ## @Validated
 
