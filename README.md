@@ -198,7 +198,7 @@ https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html <br/>
 - 값을 바인딩 할 수 없는 경우에는? <br/>
 (예를 들어, 받아와야 하는 매개변수 타입이 Integer로 선언되어 있는데 문자열이 들어왔을 경우)
     - 400 에러 BindException 발생.
-- 바인딩 에러를 직접 다루고 싶은 경우, 
+- 바인딩 에러를 직접 다루고 싶은 경우, ('당신이 폼에 입력한 이러이러한 값이 잘못되었다.'라고 보여주고 싶을 경우 사용.)
     - BindingResult 타입의 아규먼트를 바로 오른쪽에 추가한다. 
     <pre>
     public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) { ... }
