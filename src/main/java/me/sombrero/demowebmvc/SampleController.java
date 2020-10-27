@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.View;
@@ -378,8 +379,19 @@ public class SampleController {
         // httpSession.setAttribute("event", newEvent); // 세션에 event 저장하기.
         /**
          * 위 처럼 'httpSession.setAttribute("event", newEvent);'로 작성하지 않아도
+         * (HttpSession을 인자로 받아서 사용하는 것은 로우레벨..)
          * 컨트롤러에 애노테이션 '@SessionAttributes({"event"})'를 설정하면
          * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
+         *
+         * 'model.addAttribute("event", newEvent);' 처럼 모델 애트리뷰트에 추가된,
+         * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
+         *
+         * 세션에 데이터를 넣는 이유?
+         * 여러 페이지에서 유지되어야 하는 정보인 장바구니 기능과 같은 경우나,
+         * 또는 어떤 데이터를 생성할 때 여러 페이지에 걸쳐서 만들어야 하는 경우,
+         * 입력받아야 하는 값이 많아서 여러 화면(페이지)에 나눠서 폼을 만들어야 하는 경우,
+         * (@ModelAttribute는 세션에 있는 데이터도 바인딩한다.)
+         *
          */
         return "events/form";
     }
@@ -413,7 +425,8 @@ public class SampleController {
 
     @PostMapping("/events")
     public String createEvents(@Validated @ModelAttribute Event event,
-                            BindingResult bindingResult, Model model) {
+                               BindingResult bindingResult,
+                               SessionStatus sessionStatus) {
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             return "/events/form"; // form 페이지로..
         }
@@ -423,6 +436,7 @@ public class SampleController {
          * 1. 원랜 이곳에서 DB에 event 데이터를 저장. (지금은 DB가 없기 때문에..)
          */
 
+        sessionStatus.setComplete(); // 폼 처리가 끝났을 때 세션이 만료되도록 함. (세션을 비우도록 함.)
         return "redirect:/events/list"; // [폼 서브밋 재발 방지]
     }
 

@@ -284,5 +284,57 @@ public class Event {
 </pre>
 실행한 후 폼 값을 잘못 입력하면, 아래와 같이 타임리프에서 제공하는 메세지가 자동으로 출력된다.<br/><br/>
 <img src="./images/valid_form.png" width="50%"><br/>
+<br/><br/>
+
+## @SessionAttributes
+모델 정보를 HTTP 세션에 저장해주는 애노테이션.
+- HttpSession을 직접 사용할 수도 있지만..
+- 이 애노테이션에 설정한 이름에 해당하는 모델 정보를 자동으로 세션에 넣어준다. 
+- @ModelAttribute는 세션에 있는 데이터도 바인딩한다.
+- 여러 화면(또는 요청)에서 사용해야 하는 객체를 공유할 때 사용한다.
+- SessionStatus를 사용해서 세션 처리 완료를 알려줄 수 있다.
+    - 폼 처리 끝나고 세션을 비울 때 사용한다.
+<pre>
+@SessionAttributes({"event"})
+public class SampleController {
+
+    @GetMapping("/events/form")
+    // public String eventsForm(Model model, HttpSession httpSession) {
+    public String eventsForm(Model model) {
+        // Form Backing Object
+        // 폼에 채워질 데이터를 받아오는 객체를 제공.
+        Event newEvent = new Event();
+        newEvent.setLimit(50);
+        model.addAttribute("event", newEvent);
+        // httpSession.setAttribute("event", newEvent); // 세션에 event 저장하기.
+        /**
+         * 위 처럼 'httpSession.setAttribute("event", newEvent);'로 작성하지 않아도
+         * (HttpSession을 인자로 받아서 사용하는 것은 로우레벨..)
+         * 컨트롤러에 애노테이션 '@SessionAttributes({"event"})'를 설정하면
+         * 'event' 이름에 해당하는 모델 애트리뷰트를 세션에 자동으로 저장해 준다.
+         *
+         * 'model.addAttribute("event", newEvent);' 처럼 모델 애트리뷰트에 추가된,
+         * 모델 애튜리뷰트에 있는 애튜리뷰트들 중에 @SessionAttributes에 있는 이름과 같은 애트리뷰트를 세션에도 저장한다.
+         *
+         * 세션에 데이터를 넣는 이유?
+         * 여러 페이지에서 유지되어야 하는 정보인 장바구니 기능과 같은 경우나,
+         * 또는 어떤 데이터를 생성할 때 여러 페이지에 걸쳐서 만들어야 하는 경우,
+         * 입력받아야 하는 값이 많아서 여러 화면(페이지)에 나눠서 폼을 만들어야 하는 경우,
+         * (@ModelAttribute는 세션에 있는 데이터도 바인딩한다.)
+         *
+         */
+        return "events/form";
+    }
+    
+    @PostMapping("/events")
+    public String createEvents(@Validated @ModelAttribute Event event,
+                               BindingResult bindingResult, SessionStatus sessionStatus) {
+        ...
+        sessionStatus.setComplete(); // 폼 처리가 끝났을 때 세션이 만료되도록 함. (세션을 비우도록 함.)
+        ...
+    }
+}
+</pre>
+
 
 <br/><br/><br/>
