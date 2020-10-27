@@ -5,16 +5,18 @@ import javax.validation.constraints.NotBlank;
 
 public class Event {
 
-    interface ValidateName {}
-    interface ValidateLimit {}
+    /*interface ValidateName {}
+    interface ValidateLimit {}*/
 
     private Integer id;
 
-    @NotBlank(groups = ValidateName.class)
+    // @NotBlank(groups = ValidateName.class)
+    @NotBlank
     private String name;
 
     // @Min(0) // 인원수 값을 넣을 때 최소 0명 이상은 되어야 한다고 알려줌. @Valid에서 검증함.
-    @Min(value = 0, groups = ValidateLimit.class)
+    // @Min(value = 0, groups = ValidateLimit.class)
+    @Min(0)
     private Integer limit;
 
     public Integer getId() {

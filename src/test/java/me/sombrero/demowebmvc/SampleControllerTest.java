@@ -8,8 +8,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasItems;
@@ -222,13 +225,6 @@ public class SampleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104"));*/
 
-        mockMvc.perform(post("/events")
-                .param("name", "sombrero104")
-                .param("limit", "-10")) // @Valid 테스트.
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("name").value("sombrero104"));
-
     }
 
     @Test
@@ -239,6 +235,19 @@ public class SampleControllerTest {
                 .andExpect(model().attributeExists("event"));
     }
 
-
+    @Test
+    public void postEvent() throws Exception {
+        ResultActions result = mockMvc.perform(post("/events")
+                .param("name", "sombrero104")
+                .param("limit", "-10")) // @Valid, @Validated 테스트.
+                .andDo(print())
+                .andExpect(status().isOk())
+                // .andExpect(jsonPath("name").value("sombrero104"));
+                .andExpect(model().hasErrors());
+        ModelAndView mav = result.andReturn().getModelAndView();
+        Map<String, Object> model = mav.getModel();
+        // 모델에 몇개가 들어있는지 출력.
+        System.out.println("##### model.size(): " + model.size()); // 이곳에 디버거를 잡고 model 확인.
+    }
 
 }

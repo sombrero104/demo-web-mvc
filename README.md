@@ -252,4 +252,25 @@ public Event getEvents(@Validated(Event.ValidateLimit.class)
     @ModelAttribute Event event, BindingResult bindingResult) { ... }
 </pre>
 
+## @Validated, BindingResult, 타임리프로 Form 값 검증
+<pre>
+@PostMapping("/events")
+public String getEvents(@Validated @ModelAttribute Event event, BindingResult bindingResult) {
+    if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
+        return "/events/form"; // form 페이지로.. 
+    }
+    return "/events/list";
+}
+</pre>
+<pre>
+❮form action="#" th:action="@{/events}" method="post" th:object="${event}"❯
+    ❮p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"❯Incorrect name❮/p❯ // name 관련된 에러가 있으면..
+    ❮p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}"❯Incorrect limit❮/p❯ // limit 관련된 에러가 있으면.. 
+    ❮input type="text" title="name" th:field="*{name}" /❯
+    ❮input type="text" title="limit" th:field="*{limit}" /❯
+    ❮input type="submit" value="Create" /❯
+❮/form❯
+</pre>
+<img src="./images/valid_form.png" width="75%"><br/>
+
 <br/><br/><br/>

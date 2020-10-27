@@ -386,7 +386,7 @@ public class SampleController {
         event.setLimit(limit);
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
     }*/
-    @PostMapping("/events")
+    /*@PostMapping("/events")
     @ResponseBody
     // public Event getEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) { // @Valid 사용.
     // public Event getEvents(@Validated(Event.ValidateLimit.class) @ModelAttribute Event event, BindingResult bindingResult) { // @Validated(Event.ValidateLimit.class) 그룹 사용.
@@ -401,5 +401,16 @@ public class SampleController {
         }
 
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
+    }*/
+
+
+
+    @PostMapping("/events")
+    public String getEvents(@Validated @ModelAttribute Event event, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
+            return "/events/form"; // form 페이지로..
+        }
+        return "/events/list";
     }
+
 }
