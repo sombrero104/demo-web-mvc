@@ -234,5 +234,22 @@ mockMvc.perform(post("/events")
 
 ## @Validated
 - @Valid처럼 검증도 가능하고, 덧붙여 그룹을 지정할 수 있다. 
+<pre>
+public class Event {
+    interface ValidateName {}
+    interface ValidateLimit {}
+
+    @NotBlank(groups = ValidateName.class)
+    private String name;
+    
+    @Min(value = 0, groups = ValidateLimit.class)
+    private Integer limit;
+    ...
+}
+</pre>
+<pre>
+public Event getEvents(@Validated(Event.ValidateLimit.class) 
+    @ModelAttribute Event event, BindingResult bindingResult) { ... }
+</pre>
 
 <br/><br/><br/>
