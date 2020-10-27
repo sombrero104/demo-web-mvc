@@ -156,6 +156,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 <br/><br/><br/>
 
 # 핸들러 메소드 
+<br/>
 
 ## 요청 매개변수 
 아래 두 경우를 서블릿은 요청 매개변수로 처리를 한다. (사실상 서블릿은 둘 다 동일하게 봄.)<br/>
@@ -164,6 +165,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
     - '/events?name=sombrero104'
 - 폼 데이터
     - HTTP 요청 본문에 form 데이터로 보내는 경우. 
+<br/>
     
 ## @RequestParam
 핸들러에 @RequestParam을 설정해서 요청 매개변수(파라미터)를 받음. <br/>
