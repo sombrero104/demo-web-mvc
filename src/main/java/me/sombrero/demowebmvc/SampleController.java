@@ -423,6 +423,7 @@ public class SampleController {
         /**
          * [폼 서브밋 재발 방지]
          * 2. 원랜 이곳에서 1에서 저장한 event 데이터를 읽어옴. (지금은 DB가 없기 때문에..)
+         *      DB에서 event 데이터를 읽어왔다고 가정..
          */
         Event event = new Event();
         event.setName("sombrero104");
