@@ -233,6 +233,6 @@ mockMvc.perform(post("/events")
 <br/>
 
 ## @Validated
-
+- @Valid처럼 검증도 가능하고, 덧붙여 그룹을 지정할 수 있다. 
 
 <br/><br/><br/>

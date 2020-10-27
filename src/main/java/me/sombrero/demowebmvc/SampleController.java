@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
@@ -387,7 +388,9 @@ public class SampleController {
     }*/
     @PostMapping("/events")
     @ResponseBody
-    public Event getEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
+    // public Event getEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) { // @Valid 사용.
+    // public Event getEvents(@Validated(Event.ValidateLimit.class) @ModelAttribute Event event, BindingResult bindingResult) { // @Validated(Event.ValidateLimit.class) 그룹 사용.
+    public Event getEvents(@Validated(Event.ValidateName.class) @ModelAttribute Event event, BindingResult bindingResult) { // @Validated(Event.ValidateName.class) 그룹 사용.
 
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             System.out.println("=====================================================================");
