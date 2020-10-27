@@ -433,7 +433,7 @@ public String getEvents(Model model) {
 ## @SessionAttribute
 @SessionAttributes와는 완전히 다른 기능이다. (s가 안붙음! 헷갈림 주의!) <br/>
 
-## '@SessionAttributes' vs '@SessionAttribute'
+## "@SessionAttributes"  vs  "@SessionAttribute"
 @SessionAttributes와의 다른점은.. <br/>
 @SessionAttributes는 애노테이션의 정의된 해당 클래스 내에서만 적용이 된다.  <br/>
 (@SessionAttributes는 해당 클래스 내에서만 모델에 있는 정보를 세션에 저장해줌.) <br/>
