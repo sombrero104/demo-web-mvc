@@ -217,4 +217,12 @@ public class SampleControllerTest {
 
     }
 
+    @Test
+    public void eventsForm() throws Exception {
+        mockMvc.perform(get("/events/form"))
+                .andDo(print())
+                .andExpect(view().name("events/form"))
+                .andExpect(model().attributeExists("event"));
+    }
+
 }
