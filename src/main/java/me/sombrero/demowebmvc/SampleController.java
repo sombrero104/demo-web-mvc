@@ -409,6 +409,25 @@ public class SampleController {
             return "/events/form"; // form 페이지로..
         }
 
+        /**
+         * [폼 서브밋 재발 방지]
+         * 1. 원랜 이곳에서 DB에 event 데이터를 저장. (지금은 DB가 없기 때문에..)
+         */
+
+        return "redirect:/events/list"; // [폼 서브밋 재발 방지]
+    }
+
+    @GetMapping("/events/list")
+    public String getEvents(Model model) {
+
+        /**
+         * [폼 서브밋 재발 방지]
+         * 2. 원랜 이곳에서 1에서 저장한 event 데이터를 읽어옴. (지금은 DB가 없기 때문에..)
+         */
+        Event event = new Event();
+        event.setName("sombrero104");
+        event.setLimit(10);
+
         List<Event> eventList = new ArrayList<>();
         eventList.add(event);
         model.addAttribute("eventList", eventList);
