@@ -208,9 +208,16 @@ public class SampleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1));*/
 
-        mockMvc.perform(post("/events")
+        /*mockMvc.perform(post("/events")
                     .param("name", "sombrero104")
                     .param("limit", "20"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("sombrero104"));*/
+
+        mockMvc.perform(post("/events")
+                .param("name", "sombrero104")
+                .param("limit", "문자열")) // BindingResult 테스트.
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104"));
@@ -219,11 +226,12 @@ public class SampleControllerTest {
 
     @Test
     public void eventsForm() throws Exception {
-        mockMvc.perform(get("/events/form")
-        .param("limit", "문자열"))
+        mockMvc.perform(get("/events/form"))
                 .andDo(print())
                 .andExpect(view().name("events/form"))
                 .andExpect(model().attributeExists("event"));
     }
+
+
 
 }

@@ -389,10 +389,11 @@ public class SampleController {
     public Event getEvents(@ModelAttribute Event event, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
-            System.out.println("=====================================");
+            System.out.println("=====================================================================");
             bindingResult.getAllErrors().forEach(c -> { // 에러 정보를 순회하면서 출력한다.
-                System.out.println(c.toString());
+                System.out.println("##### " + c.toString());
             });
+            System.out.println("=====================================================================");
         }
 
         return event; // @ResponseBody를 해주면 자동으로 JSON 형태로 반환됨.
