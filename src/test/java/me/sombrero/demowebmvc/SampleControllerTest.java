@@ -219,7 +219,8 @@ public class SampleControllerTest {
 
     @Test
     public void eventsForm() throws Exception {
-        mockMvc.perform(get("/events/form"))
+        mockMvc.perform(get("/events/form")
+        .param("limit", "문자열"))
                 .andDo(print())
                 .andExpect(view().name("events/form"))
                 .andExpect(model().attributeExists("event"));
