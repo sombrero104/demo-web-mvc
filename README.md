@@ -263,6 +263,16 @@ public String getEvents(@Validated @ModelAttribute Event event, BindingResult bi
 }
 </pre>
 <pre>
+public class Event {
+    @NotBlank
+    private String name;
+    
+    @Min(0)
+    private Integer limit;
+    ...
+}
+</pre>
+<pre>
 ❮form action="#" th:action="@{/events}" method="post" th:object="${event}"❯
     ❮p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"❯Incorrect name❮/p❯ // name 관련된 에러가 있으면..
     ❮p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}"❯Incorrect limit❮/p❯ // limit 관련된 에러가 있으면.. 
@@ -271,6 +281,6 @@ public String getEvents(@Validated @ModelAttribute Event event, BindingResult bi
     ❮input type="submit" value="Create" /❯
 ❮/form❯
 </pre>
-<img src="./images/valid_form.png" width="75%"><br/>
+<img src="./images/valid_form.png" width="55%"><br/>
 
 <br/><br/><br/>
