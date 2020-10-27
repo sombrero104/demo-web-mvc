@@ -158,6 +158,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 # 핸들러 메소드 
 
 ## 요청 매개변수 
+아래 두 경우를 서블릿은 요청 매개변수로 처리를 한다. 
 - 쿼리 매개변수
     - Key/Value에 해당하는 데이터를 쿼리 파라미터로 보내는 것.
     - '/events?name=sombrero104'
