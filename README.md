@@ -157,4 +157,13 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 
 # 핸들러 메소드 
 
+## 요청 매개변수 
+- 쿼리 매개변수
+    - Key/Value에 해당하는 데이터를 쿼리 파라미터로 보내는 것.
+    - '/events?name=sombrero104'
+- 폼 데이터
+    - HTTP 요청 본문에 form 데이터로 보내는 경우. 
+
+
+
 <br/><br/><br/>

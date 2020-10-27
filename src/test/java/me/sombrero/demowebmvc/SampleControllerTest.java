@@ -203,10 +203,11 @@ public class SampleControllerTest {
                 .andExpect(jsonPath("name").value("sombrero104"));*/
 
 
-        mockMvc.perform(get("/events/1"))
+        /*mockMvc.perform(get("/events/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id").value(1));
+                .andExpect(jsonPath("id").value(1));*/
+
     }
 
 }
