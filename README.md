@@ -159,7 +159,7 @@ https://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-
 
 ## 요청 매개변수 
 아래 두 경우를 서블릿은 요청 매개변수로 처리를 한다. (사실상 서블릿은 둘 다 동일하게 봄.)<br/>
-핸들러에 @RequestParam을 설정해서 파라미터를 받음.<br/>
+핸들러에 @RequestParam을 설정해서 파라미터를 받음. @RequestParam 애노테이션을 생략할 수도 있음.<br/>
 - 쿼리 매개변수
     - Key/Value에 해당하는 데이터를 쿼리 파라미터로 보내는 것.
     - '/events?name=sombrero104'
