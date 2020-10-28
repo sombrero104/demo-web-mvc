@@ -540,6 +540,7 @@ public String createEventsLimitSubmit(
 </pre>
 <pre>
 @GetMapping("/events/list")
+// FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")로도 가져올 수 있고.. 
 // public String getEvents(@ModelAttribute("newEvent") Event event,
 //                   Model model, @SessionAttribute LocalDateTime visitTime) {
 // FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
