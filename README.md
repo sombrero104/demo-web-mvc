@@ -527,6 +527,39 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
 이 세션에 있는 데이터는 제거가 된다. (일회성 데이터라고 할 수 있다. 그래서 이름이 flash..)<br/>
 HTTP 세션을 통해 데이터가 전달되기 때문에 URI 경로에 데이터가 노출되지 않는다. <br/>
 
+<pre>
+@PostMapping("/events/form/limit")
+public String createEventsLimitSubmit(
+        @Validated @ModelAttribute Event event,
+        ..., RedirectAttributes attributes) {
+    ...
+    attributes.addFlashAttribute("newEvent", event); // FlashAttributes 사용. 이 객체는 세션에 들어간다.
+    ...
+    return "redirect:/events/list"; // list 페이지로 리다이렉트. 
+}
+</pre>
+<pre>
+@GetMapping("/events/list")
+// public String getEvents(@ModelAttribute("newEvent") Event event,
+//                   Model model, @SessionAttribute LocalDateTime visitTime) {
+// FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
+public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) {
+    Event event2 = new Event();
+    event2.setName("sombrero104");
+    event2.setLimit(10);
+
+    // FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
+    Event newEvent = (Event) model.asMap().get("newEvent");
+
+    List<Event> eventList = new ArrayList<>();
+    eventList.add(event2);
+    eventList.add(newEvent);
+    model.addAttribute("eventList", eventList);
+
+    return "/events/list";
+}
+</pre>
+
 <br/><br/>
 
 
