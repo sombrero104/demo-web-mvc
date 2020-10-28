@@ -461,7 +461,7 @@ public String createEventsLimitSubmit(..., Model model) {
 <pre>
 spring.mvc.ignore-default-model-on-redirect=false
 </pre>
-
+<img src="./images/redirect_attributes.png" width="50%"><br/>
 
 
 <br/><br/><br/>
