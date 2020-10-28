@@ -524,6 +524,7 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
 리다이렉트 요청을 처리한 다음 그 즉시 제거한다.<br/>
 리다이렉트된 곳에서 데이터가 사용되면, (리다이렉트 요청 후 처리가 되면)<br/>
 이 세션에 있는 데이터는 제거가 된다. (일회성 데이터라고 할 수 있다. 그래서 이름이 flash..)<br/>
+HTTP 세션을 통해 데이터가 전달되기 때문에 URI 경로에 데이터가 노출되지 않는다. <br/>
 
 <br/><br/>
 
