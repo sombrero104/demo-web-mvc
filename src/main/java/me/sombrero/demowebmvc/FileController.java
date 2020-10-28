@@ -28,6 +28,9 @@ public class FileController {
                             RedirectAttributes attributes) {
         // save하는 로직이 들어가는 곳. (지금은 생략.)
 
+        System.out.println("##### file name: " + file.getName()); // form에서 사용한 이름.
+        System.out.println("##### file original name: " + file.getOriginalFilename()); // 실제 업로드한 파일 이름.
+
         String message = file.getOriginalFilename() + " is uploaded."; // 업로드 되었다는 메세지.
         attributes.addFlashAttribute("message", message); // 메세지를 RedirectAttributes로 플래시 애트리뷰트에 추가한다.
         return "redirect:/file"; // GET요청의 /file 페이지로 리다이렉트.
