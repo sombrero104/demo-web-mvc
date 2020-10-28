@@ -533,8 +533,9 @@ public class SampleController {
         // 리다이렉트 할 때 기본적으로 Model에 들어있는 primitive type 데이터는 URI 쿼리 매개변수에 추가된다.
         // model.addAttribute("name", event.getName()); // model로 URI 쿼리 매개변수 추가
         // model.addAttribute("limit", event.getLimit()); // model로 URI 쿼리 매개변수 추가
-        attributes.addAttribute("name", event.getName()); // RedirectAttributes로 URI 쿼리 매개변수 추가
-        attributes.addAttribute("limit", event.getLimit()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+        // attributes.addAttribute("name", event.getName()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+        // attributes.addAttribute("limit", event.getLimit()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+        attributes.addFlashAttribute("newEvent", event); // FlashAttributes 사용. 이 객체는 세션에 들어간다.
         // 원래는 id만 list에 넘겨서 새로 추가된 정보만 하이라이트해서 보여주는 식으로 사용.
 
         // 마지막으로 list 페이지를 보여줌.
