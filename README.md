@@ -467,7 +467,8 @@ spring.mvc.ignore-default-model-on-redirect=false
 <img src="./images/redirect_attributes.png" width="65%"><br/>후
 
 ### RedirectAttributes 사용 
-위에서 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false로 설정한 것을 다시 없앤다. <br/>
+원하는 값만 리다이렉트 할 때 전달하고 싶다면 RedirectAttributes에 명시적으로 추가할 수 있다. <br/>
+우선, 위에서 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false로 설정한 것을 다시 없앤다. <br/>
 <pre>
 @PostMapping("/events/form/limit")
 public String createEventsLimitSubmit(..., RedirectAttributes attributes) { // RedirectAttributes로 URI 쿼리 매개변수 추가
