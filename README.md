@@ -604,6 +604,7 @@ public StandardServletMultipartResolver multipartResolver() {
 }
 </pre>
 스프링부트가 아닌 순수한 스프링MVC에서는 multipartResolver를 빈으로 등록해줘야 한다. <br/>
+<br/>
 
 ### 파일 업로드 페이지 만들기. 
 파일 업로드 하는 페이지를 만든다. 
