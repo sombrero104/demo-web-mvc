@@ -512,5 +512,16 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
 </pre>
 <br/><br/>
 
+## Flash Attributes
+주로 리다이렉트 시에 데이터를 전달할 때 사용한다.<br/>
+- 데이터가 URL에 노출되지 않는다.
+- 임의의 객체를 저장할 수 있다.
+- 보통 HTTP 세션을 사용한다.
+
+리다이렉트 하기 전에 데이터를 HTTP 세션에 저장하고,<br/>
+리다이렉트 요청을 처리한 다음 그 즉시 제거한다.<br/>
+
+<br/><br/>
+
 
 <br/><br/><br/>
