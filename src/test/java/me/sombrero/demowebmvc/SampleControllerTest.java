@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -253,5 +254,23 @@ public class SampleControllerTest {
         // 모델에 몇개가 들어있는지 출력.
         System.out.println("##### model.size(): " + model.size()); // 이곳에 디버거를 잡고 model 확인.
     }*/
+
+
+    /**
+     * list 페이지를 요청하면서 세션 애튜리뷰트에는 visitTime을 넣고, flash 애트리뷰트에는 event 객체를 넣어서 테스트한다.
+     */
+    @Test
+    public void getEvents() throws Exception {
+        Event newEvent = new Event();
+        newEvent.setName("Winter is coming.");
+        newEvent.setLimit(10000);
+
+        mockMvc.perform(get("/events/list")
+            .sessionAttr("visitTime", LocalDateTime.now())
+            .flashAttr("newEvent", newEvent))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(xpath("//p").nodeCount(2));
+    }
 
 }
