@@ -542,8 +542,11 @@ public class SampleController {
     }
 
     @GetMapping("/events/list")
-    public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // (권장.)
+    // public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // (권장.)
     // public String getEvents(Model model, HttpSession httpSession) { // (비추. 로우레벨.)
+    // public String getEvents(@PathVariable Model model, @SessionAttribute LocalDateTime visitTime) {
+    public String getEvents(@RequestParam String name, @RequestParam Integer limit,
+                            Model model, @SessionAttribute LocalDateTime visitTime) {
 
         System.out.println("##### visitTime: " + visitTime); // @SessionAttribute로 visitTime 출력. (권장.)
         // 출력 결과: ##### visitTime: 2020-10-27T23:25:23.381540
@@ -553,15 +556,48 @@ public class SampleController {
         // HttpSession으로 visitTime을 꺼내올 때의 단점은 반환값이 Object이기 때문에 시간으로 타입 컨버전이 필요하다. (출력은 동일하게 나오긴 하는데..)
         // LocalDateTime으로 받아와야 시간 관련해서 api를 제공받을 수 있어서 편리하다.
 
+        Event newEvent = new Event();
+        newEvent.setName(name);
+        newEvent.setLimit(limit);
+
         Event event = new Event();
         event.setName("sombrero104");
         event.setLimit(10);
 
         List<Event> eventList = new ArrayList<>();
         eventList.add(event);
+        eventList.add(newEvent);
         model.addAttribute("eventList", eventList);
 
         return "/events/list";
     }
+
+    /**
+     * 위 list에서 만약
+     * '@RequestParam String name, @RequestParam Integer limit'를 파라미터로 받아오는 부분을
+     * '@ModelAttribute Event event'로 바꿔서 받아오려고 수정하면
+     * 세션에 있는 event를 가져오려고 시도를 하기 때문에
+     * (이전에 'sessionStatus.setComplete();'을 해서 이미 세션을 비운 상태이므로..)
+     * (지금은 세션에 event가 없기 때문에) 오류가 발생한다.
+     *  => 이럴땐 세션에 지정한 이름과 다르게 해주면 된다.
+     *      이름을 다르게 주면 세션에 있는 event를 찾아오는게 아니라
+     *      URI 쿼리 파라미터에 있는 값을 바인딩해서 가져오게 된다.
+     */
+    /*@GetMapping("/events/list")
+    public String getEvents(@ModelAttribute Event event,
+                            Model model, @SessionAttribute LocalDateTime visitTime) {
+        System.out.println("##### visitTime: " + visitTime);
+
+        Event event2 = new Event();
+        event.setName("sombrero104");
+        event.setLimit(10);
+
+        List<Event> eventList = new ArrayList<>();
+        eventList.add(event2);
+        eventList.add(event);
+        model.addAttribute("eventList", eventList);
+
+        return "/events/list";
+    }*/
 
 }
