@@ -482,6 +482,7 @@ public String createEventsLimitSubmit(..., RedirectAttributes attributes) { // R
     return "redirect:/events/list"; // list 페이지로 리다이렉트. 
 }
 </pre>
+리다이렉트 요청을 처리하는 곳에서 쿼리 매개변수를 @RequestParam 또는 @ModelAttribute로 받을 수 있다. 
 <pre>
 @GetMapping("/events/list")
 // public String getEvents(@RequestParam String name, @RequestParam Integer limit, // 위 메소드에서 RedirectAttributes에 추가한 쿼리 매개변수 가져오기.
