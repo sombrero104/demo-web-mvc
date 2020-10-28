@@ -461,8 +461,8 @@ public String createEventsLimitSubmit(..., Model model) {
 <pre>
 spring.mvc.ignore-default-model-on-redirect=false
 </pre>
-웹 애플리케이션을 실행 후 list 페이지로 리다이렉트 하면 아래와 같이 URI 뒤에 파라미터가 붙는 것을 확인할 수 있다. <br/>
-<img src="./images/redirect_attributes.png" width="70%"><br/>
+웹 애플리케이션을 실행 후 list 페이지로 리다이렉트 하면 아래와 같이 URI 뒤에 파라미터가 붙는 것을 확인할 수 있다. <br/><br/>
+<img src="./images/redirect_attributes.png" width="65%"><br/>
 <br/><br/>
 
 <br/><br/><br/>
