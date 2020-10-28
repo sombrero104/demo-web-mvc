@@ -593,6 +593,8 @@ public void getEvents() throws Exception {
 스프링부트에서 자동설정할 때 참조되는 spring.factories를 보면 MultipartAutoConfiguration를 설정하는데,<br/>
 MultipartAutoConfiguration 코드를 보면,<br/>
 프로퍼티(application.properties)에서 prefix가 'spring.servlet.multipart'인 프로퍼티를 들고 와서 설정하는 것을 알 수 있다. <br/>
+(MultipartFile 관련 설정을 변경하고 싶은 경우, <br/>
+application.properties파일에 prefix가 'spring.servlet.multipart'인 속성을 추가하면 된다는 의미.)<br/>
 그리고 이 클래스에서 multipartResolver 빈을 생성하는 것을 확인할 수 있다.<br/>
 <pre>
 @Bean(name = {"multipartResolver"})
