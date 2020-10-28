@@ -545,8 +545,14 @@ public class SampleController {
     // public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // (권장.)
     // public String getEvents(Model model, HttpSession httpSession) { // (비추. 로우레벨.)
     // public String getEvents(@PathVariable Model model, @SessionAttribute LocalDateTime visitTime) {
-    public String getEvents(@RequestParam String name, @RequestParam Integer limit,
-                            Model model, @SessionAttribute LocalDateTime visitTime) {
+    // public String getEvents(@RequestParam String name, @RequestParam Integer limit,
+    //                        Model model, @SessionAttribute LocalDateTime visitTime) {
+    // @ModelAttribute를 통해 위에서 RedirectAttributes 추가한 쿼리 매개변수를 가져온다.
+    // 이때, 세션에 지정한 이름과 같게 지정하면 세션에서 evnet를 들고 오려고 하는데,
+    // 위에서 세션을 비웠으므로 세션에는 event가 없는 상태이다. 그래서 오류가 발생한다.
+    // 세션에서 들고 오지 않고 URI에 붙은 쿼리 파라미터 값을 들고 오려면 아래처럼 세션에 지정한 이름과 다르게 주면 된다.
+    public String getEvents(@ModelAttribute("newEvent") Event event,
+                             Model model, @SessionAttribute LocalDateTime visitTime) {
 
         System.out.println("##### visitTime: " + visitTime); // @SessionAttribute로 visitTime 출력. (권장.)
         // 출력 결과: ##### visitTime: 2020-10-27T23:25:23.381540
@@ -556,17 +562,17 @@ public class SampleController {
         // HttpSession으로 visitTime을 꺼내올 때의 단점은 반환값이 Object이기 때문에 시간으로 타입 컨버전이 필요하다. (출력은 동일하게 나오긴 하는데..)
         // LocalDateTime으로 받아와야 시간 관련해서 api를 제공받을 수 있어서 편리하다.
 
-        Event newEvent = new Event();
-        newEvent.setName(name);
-        newEvent.setLimit(limit);
+        // Event newEvent = new Event();
+        // newEvent.setName(name);
+        // newEvent.setLimit(limit);
 
-        Event event = new Event();
+        Event event2 = new Event();
         event.setName("sombrero104");
         event.setLimit(10);
 
         List<Event> eventList = new ArrayList<>();
+        eventList.add(event2);
         eventList.add(event);
-        eventList.add(newEvent);
         model.addAttribute("eventList", eventList);
 
         return "/events/list";
