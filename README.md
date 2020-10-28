@@ -479,8 +479,34 @@ public String createEventsLimitSubmit(..., RedirectAttributes attributes) { // R
     return "redirect:/events/list"; // list 페이지로 리다이렉트. 
 }
 </pre>
+<pre>
+@GetMapping("/events/list")
+// public String getEvents(@RequestParam String name, @RequestParam Integer limit, // 위 메소드에서 RedirectAttributes에 추가한 쿼리 매개변수 가져오기.
+//                        Model model, @SessionAttribute LocalDateTime visitTime) {
+// @ModelAttribute를 통해 위에서 RedirectAttributes에 추가한 쿼리 매개변수를 가져온다.
+// 이때, 세션에 지정한 이름과 같게 지정하면 세션에서 evnet를 들고 오려고 하는데,
+// 위에서 세션을 비웠으므로 세션에는 event가 없는 상태이다. 그래서 오류가 발생한다.
+// 세션에서 들고 오지 않고 URI에 붙은 쿼리 파라미터 값을 들고 오려면 아래처럼 세션에 지정한 이름과 다르게 주면 된다.
+public String getEvents(@ModelAttribute("newEvent") Event event,
+                         Model model, @SessionAttribute LocalDateTime visitTime) {
+     ...
+    // Event newEvent = new Event();
+    // newEvent.setName(name);
+    // newEvent.setLimit(limit);
 
+    Event event2 = new Event();
+    event.setName("sombrero104");
+    event.setLimit(10);
 
+    List<Event> eventList = new ArrayList<>();
+    eventList.add(event2);
+    eventList.add(event);
+    model.addAttribute("eventList", eventList);
+
+    return "/events/list";
+}
+</pre>
+<br/><br/>
 
 
 <br/><br/><br/>
