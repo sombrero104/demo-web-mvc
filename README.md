@@ -603,6 +603,72 @@ public StandardServletMultipartResolver multipartResolver() {
 </pre>
 스프링부트가 아닌 순수한 스프링MVC에서는 multipartResolver를 빈으로 등록해줘야 한다. <br/>
 
+### 파일 업로드 만들기. 
+파일 업로드 하는 페이지를 만든다. 
+<pre>
+❮div th:if="${message}"❯
+    ❮h2 th:text="${message}"/❯
+❮/div❯
+❮form method="POST" enctype="multipart/form-data" action="#" th:action="@{/file}"❯
+    File: ❮input type="file" name="file" /❯
+    ❮input type="submit" value="Upload" /❯
+❮/form❯
+</pre>
+파일 업로드 페이지와 파일 업로드 로직을 처리하는 핸들러를 만든다. 
+<pre>
+/**
+ * 파일 업로드 페이지.
+ */
+@GetMapping("/file")
+public String fileUploadForm(Model model) {
+    // 파일 업로드 로직에서 다시 돌아오면 RedirectAttributes로 인해 model에 message가 담겨있다.
+    return "files/index";
+}
+
+/**
+ * 파일 업로드 로직.
+ */
+@PostMapping("/file")
+public String fileUpload(@RequestParam MultipartFile file, // form에서 사용한 이름과 동일하게 해준다.
+                        RedirectAttributes attributes) {
+    // save하는 로직이 들어가는 곳. (지금은 생략.)
+
+    System.out.println("##### file name: " + file.getName()); // form에서 사용한 이름.
+    System.out.println("##### file original name: " + file.getOriginalFilename()); // 실제 업로드한 파일 이름.
+
+    String message = file.getOriginalFilename() + " is uploaded."; // 업로드 되었다는 메세지.
+    attributes.addFlashAttribute("message", message); // 메세지를 RedirectAttributes로 플래시 애트리뷰트에 추가한다.
+    return "redirect:/file"; // GET요청의 /file 페이지로 리다이렉트.
+}
+</pre>
+위에서 만든 기능에 대한 테스트 코드를 작성한다. 
+<pre>
+@RunWith(SpringRunner.class)
+@SpringBootTest // 스프링부트의 전반적인 빈을 사용할 수 있음. 하지만 @WebMvcTest처럼 @AutoConfigureMockMvc을 자동으로 등록해주지는 않음.
+@AutoConfigureMockMvc // @SpringBootTest를 쓰면서 MVC 테스트를 하고 싶은 경우에는 직접 설정해줘야 함. // 그래야 MockMvc를 주입받아서 사용할 수 있다.
+public class FileControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void fileUploadTest() throws Exception {
+        // 가짜 파일 만들기.
+        // new MockMultipartFile([name: form에서 사용한 이름], [OriginalFilename: 실제 업로드한 파일 이름], [Content-Type], [파일에 들어갈 본문]);
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "test.txt", "text/plain", "hello file".getBytes());
+
+        // multipart는 POST 요청이고, enctype이 form-data(multipart/form-data)이다.
+        // 아래 multipart() 함수가 이런 설정들이 되어 있는 함수라고 생각하면 된다.
+        this.mockMvc.perform(multipart("/file").file(file))
+            .andDo(print())
+            .andExpect(status().is3xxRedirection()); // '3xx 리다이렉션 응답코드가 올 것이다.'라는 의미.
+    }
+
+}
+</pre>
 <br/><br/>
+
+
 
 <br/><br/><br/>
