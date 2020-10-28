@@ -576,7 +576,7 @@ public void getEvents() throws Exception {
         .flashAttr("newEvent", newEvent))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(xpath("//p").nodeCount(2)); // '<p></p> 노드는 2개일 것이다.'라는 의미.
+            .andExpect(xpath("//p").nodeCount(2)); // '❮p❯❮/p❯ 노드는 2개일 것이다.'라는 의미.
             // xpath에 대한 참고.
             // 􏰒􏰅􏰅https://www.w3schools.com/xml/xpath_syntax.asp
 }
