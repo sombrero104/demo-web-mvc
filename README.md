@@ -499,8 +499,8 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
     // newEvent.setLimit(limit);
 
     Event event2 = new Event();
-    event.setName("sombrero104");
-    event.setLimit(10);
+    event2.setName("sombrero104");
+    event2.setLimit(10);
 
     List<Event> eventList = new ArrayList<>();
     eventList.add(event2);
