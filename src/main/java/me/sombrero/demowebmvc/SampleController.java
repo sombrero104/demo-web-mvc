@@ -542,12 +542,12 @@ public class SampleController {
     }
 
     @GetMapping("/events/list")
-    // public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // (권장.)
-    // public String getEvents(Model model, HttpSession httpSession) { // (비추. 로우레벨.)
-    // public String getEvents(@PathVariable Model model, @SessionAttribute LocalDateTime visitTime) {
-    // public String getEvents(@RequestParam String name, @RequestParam Integer limit,
+    // public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) { // 세션에 저장한 visitTime 가져와서 출력하기. (권장.)
+    // public String getEvents(Model model, HttpSession httpSession) { // 세션에 저장한 visitTime 가져와서 출력하기. (비추. 로우레벨.)
+    // public String getEvents(@RequestParam Model model, @SessionAttribute LocalDateTime visitTime) { // 위 메소드에서 model에 추가한 쿼리 매개변수 가져오기.
+    // public String getEvents(@RequestParam String name, @RequestParam Integer limit, // 위 메소드에서 RedirectAttributes에 추가한 쿼리 매개변수 가져오기.
     //                        Model model, @SessionAttribute LocalDateTime visitTime) {
-    // @ModelAttribute를 통해 위에서 RedirectAttributes 추가한 쿼리 매개변수를 가져온다.
+    // @ModelAttribute를 통해 위에서 RedirectAttributes에 추가한 쿼리 매개변수를 가져온다.
     // 이때, 세션에 지정한 이름과 같게 지정하면 세션에서 evnet를 들고 오려고 하는데,
     // 위에서 세션을 비웠으므로 세션에는 event가 없는 상태이다. 그래서 오류가 발생한다.
     // 세션에서 들고 오지 않고 URI에 붙은 쿼리 파라미터 값을 들고 오려면 아래처럼 세션에 지정한 이름과 다르게 주면 된다.
