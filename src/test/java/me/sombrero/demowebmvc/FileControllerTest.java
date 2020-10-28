@@ -33,7 +33,7 @@ public class FileControllerTest {
         // 아래 multipart() 함수가 이런 설정들이 되어 있는 함수라고 생각하면 된다.
         this.mockMvc.perform(multipart("/file").file(file))
             .andDo(print())
-            .andExpect(status().is3xxRedirection());
+            .andExpect(status().is3xxRedirection()); // '3xx 리다이렉션 응답코드가 올 것이다.'라는 의미.
     }
 
 }
