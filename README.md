@@ -634,7 +634,7 @@ public String fileUploadForm(Model model) {
 @PostMapping("/file")
 public String fileUpload(@RequestParam MultipartFile file, // form에서 사용한 이름과 동일하게 해준다.
                         RedirectAttributes attributes) {
-    // save하는 로직이 들어가는 곳. (지금은 생략.)
+    // save하는 로직이 들어가는 곳. 이곳에서 파일을 스토리지에 저장하는 로직을 작성하면 된다. (지금은 생략.)
 
     System.out.println("##### file name: " + file.getName()); // form에서 사용한 이름.
     System.out.println("##### file original name: " + file.getOriginalFilename()); // 실제 업로드한 파일 이름.
