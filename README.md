@@ -510,6 +510,8 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
     return "/events/list";
 }
 </pre>
+하지만 이 방법은 URI 쿼리 파라미터(매개변수)로 보내기 때문에 꼭 문자열로 변환이 되어야 한다.<br/>
+복합적인 객체로 전달하기는 어렵다는 점이 있다. <br/>
 <br/><br/>
 
 ## Flash Attributes
