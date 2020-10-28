@@ -227,7 +227,7 @@ public class SampleControllerTest {
 
     }
 
-    @Test
+    /*@Test
     public void eventsForm() throws Exception {
         MockHttpServletRequest request = mockMvc.perform(get("/events/form"))
                 .andDo(print())
@@ -237,9 +237,9 @@ public class SampleControllerTest {
                 .andReturn().getRequest();
         Object event = request.getSession().getAttribute("event");
         System.out.println(event);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void postEvent() throws Exception {
         ResultActions result = mockMvc.perform(post("/events")
                 .param("name", "sombrero104")
@@ -252,6 +252,6 @@ public class SampleControllerTest {
         Map<String, Object> model = mav.getModel();
         // 모델에 몇개가 들어있는지 출력.
         System.out.println("##### model.size(): " + model.size()); // 이곳에 디버거를 잡고 model 확인.
-    }
+    }*/
 
 }
