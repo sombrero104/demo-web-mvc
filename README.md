@@ -467,5 +467,5 @@ spring.mvc.ignore-default-model-on-redirect=false
 <img src="./images/redirect_attributes.png" width="65%"><br/>후
 
 ### @RedirectAttributes 사용 
-
+위에서 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false로 설정한 것을 다시 없앤다. <br/>
 <br/><br/><br/>

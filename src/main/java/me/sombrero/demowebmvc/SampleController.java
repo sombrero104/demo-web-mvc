@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -519,7 +520,8 @@ public class SampleController {
             @Validated @ModelAttribute Event event, // @ModelAttribute가 세션에 있는 정보도 바인딩 받음.
             BindingResult bindingResult,
             SessionStatus sessionStatus,
-            Model model) {
+            // Model model) { // model로 URI 쿼리 매개변수 추가
+            RedirectAttributes attributes) { // RedirectAttributes로 URI 쿼리 매개변수 추가
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             return "/events/form-limit"; // form-limit 페이지로..
         }
@@ -528,8 +530,12 @@ public class SampleController {
         // 세션에 있는 정보를 지워주고..
         sessionStatus.setComplete(); // 세션 비우기.
 
-        model.addAttribute("name", event.getName());
-        model.addAttribute("limit", event.getLimit());
+        // 리다이렉트 할 때 기본적으로 Model에 들어있는 primitive type 데이터는 URI 쿼리 매개변수에 추가된다.
+        // model.addAttribute("name", event.getName()); // model로 URI 쿼리 매개변수 추가
+        // model.addAttribute("limit", event.getLimit()); // model로 URI 쿼리 매개변수 추가
+        attributes.addAttribute("name", event.getName()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+        attributes.addAttribute("limit", event.getLimit()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+        // 원래는 id만 list에 넘겨서 새로 추가된 정보만 하이라이트해서 보여주는 식으로 사용.
 
         // 마지막으로 list 페이지를 보여줌.
         return "redirect:/events/list"; // list 페이지를 보여줌.
