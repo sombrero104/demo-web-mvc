@@ -552,8 +552,10 @@ public class SampleController {
     // 이때, 세션에 지정한 이름과 같게 지정하면 세션에서 evnet를 들고 오려고 하는데,
     // 위에서 세션을 비웠으므로 세션에는 event가 없는 상태이다. 그래서 오류가 발생한다.
     // 세션에서 들고 오지 않고 URI에 붙은 쿼리 파라미터 값을 들고 오려면 아래처럼 세션에 지정한 이름과 다르게 주면 된다.
-    public String getEvents(@ModelAttribute("newEvent") Event event,
-                             Model model, @SessionAttribute LocalDateTime visitTime) {
+    // public String getEvents(@ModelAttribute("newEvent") Event event,
+    //                   Model model, @SessionAttribute LocalDateTime visitTime) {
+    // FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
+    public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) {
 
         System.out.println("##### visitTime: " + visitTime); // @SessionAttribute로 visitTime 출력. (권장.)
         // 출력 결과: ##### visitTime: 2020-10-27T23:25:23.381540
@@ -571,9 +573,12 @@ public class SampleController {
         event2.setName("sombrero104");
         event2.setLimit(10);
 
+        // FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
+        Event newEvent = (Event) model.asMap().get("newEvent");
+
         List<Event> eventList = new ArrayList<>();
         eventList.add(event2);
-        eventList.add(event);
+        eventList.add(newEvent);
         model.addAttribute("eventList", eventList);
 
         return "/events/list";
