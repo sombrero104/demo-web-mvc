@@ -560,7 +560,27 @@ public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) 
     return "/events/list";
 }
 </pre>
+아래와 같이 테스트할 수 있다. 
+<pre>
+/**
+ * list 페이지를 요청하면서 세션 애튜리뷰트에는 visitTime을 넣고, flash 애트리뷰트에는 event 객체를 넣어서 테스트한다.
+ */
+@Test
+public void getEvents() throws Exception {
+    Event newEvent = new Event();
+    newEvent.setName("Winter is coming.");
+    newEvent.setLimit(10000);
 
+    mockMvc.perform(get("/events/list")
+        .sessionAttr("visitTime", LocalDateTime.now())
+        .flashAttr("newEvent", newEvent))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(xpath("//p").nodeCount(2)); // '<p></p> 노드는 2개일 것이다.'라는 의미.
+            // xpath에 대한 참고.
+            // 􏰒􏰅􏰅https://www.w3schools.com/xml/xpath_syntax.asp
+}
+</pre>
 <br/><br/>
 
 
