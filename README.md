@@ -589,6 +589,7 @@ public void getEvents() throws Exception {
 - POST multipart/form-data 요청에 들어있는 파일을 참조할 수 있다. 
 - List<MultipartFile> 아규먼트로 여러 파일을 참조할 수도 있다. 
 
+스프링부트에서는.. <br/>
 스프링부트에서 자동설정할 때 참조되는 spring.factories를 보면 MultipartAutoConfiguration를 설정하는데,<br/>
 MultipartAutoConfiguration 코드를 보면,<br/>
 프로퍼티(application.properties)에서 prefix가 'spring.servlet.multipart'인 프로퍼티를 들고 와서 설정하는 것을 알 수 있다. <br/>
