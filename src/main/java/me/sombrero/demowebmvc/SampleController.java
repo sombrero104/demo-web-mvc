@@ -518,7 +518,8 @@ public class SampleController {
     public String createEventsLimitSubmit(
             @Validated @ModelAttribute Event event, // @ModelAttribute가 세션에 있는 정보도 바인딩 받음.
             BindingResult bindingResult,
-            SessionStatus sessionStatus) {
+            SessionStatus sessionStatus,
+            Model model) {
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             return "/events/form-limit"; // form-limit 페이지로..
         }
@@ -526,6 +527,9 @@ public class SampleController {
         // 별 문제가 없으면 (에러가 없으면)
         // 세션에 있는 정보를 지워주고..
         sessionStatus.setComplete(); // 세션 비우기.
+
+        model.addAttribute("name", event.getName());
+        model.addAttribute("limit", event.getLimit());
 
         // 마지막으로 list 페이지를 보여줌.
         return "redirect:/events/list"; // list 페이지를 보여줌.
