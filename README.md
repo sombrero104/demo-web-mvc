@@ -442,8 +442,8 @@ public String getEvents(Model model) {
 세션에 뭔가를 넣어 놓았을 경우, 그것을 가져와서 쓰고 싶은 경우, @SessionAttribute를 사용할 수 있다.  <br/>
 <br/><br/>
 
-## @RedirectAttributes
-### @RedirectAttributes 사용 전
+## RedirectAttributes
+### RedirectAttributes 사용 전 (model 사용 방법.)
 리다이렉트 할 때 기본적으로 Model에 들어있는 primitive type 데이터는 URI 쿼리 매개변수에 추가된다. <br/>
 - 스프링 부트에서는 이 기능이 기본적으로 비활성화 되어 있다. 
 - Ignore-default-model-on-redirect 프로퍼티를 사용해서 활성화 할 수 있다. 
@@ -466,6 +466,21 @@ spring.mvc.ignore-default-model-on-redirect=false
 웹 애플리케이션을 실행 후 list 페이지로 리다이렉트 하면 아래와 같이 URI 뒤에 파라미터가 붙는 것을 확인할 수 있다. <br/><br/>
 <img src="./images/redirect_attributes.png" width="65%"><br/>후
 
-### @RedirectAttributes 사용 
+### RedirectAttributes 사용 
 위에서 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false로 설정한 것을 다시 없앤다. <br/>
+<pre>
+@PostMapping("/events/form/limit")
+public String createEventsLimitSubmit(..., RedirectAttributes attributes) { // RedirectAttributes로 URI 쿼리 매개변수 추가
+    ...
+    attributes.addAttribute("name", event.getName()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+    attributes.addAttribute("limit", event.getLimit()); // RedirectAttributes로 URI 쿼리 매개변수 추가
+    // 원래는 id만 list에 넘겨서 새로 추가된 정보만 하이라이트해서 보여주는 식으로 사용.
+    ...
+    return "redirect:/events/list"; // list 페이지로 리다이렉트. 
+}
+</pre>
+
+
+
+
 <br/><br/><br/>
