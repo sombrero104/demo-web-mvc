@@ -458,6 +458,7 @@ public String createEventsLimitSubmit(..., Model model) {
 </pre>
 위 처럼 model 애트리뷰트에 데이터를 추가한 후,<br/>
 아래와 같이 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false 한다. <br/>
+(스프링부트에서 기본적으로 무시하는(비활성화된) 것을 끈다.) <br/>
 <pre>
 spring.mvc.ignore-default-model-on-redirect=false
 </pre>
