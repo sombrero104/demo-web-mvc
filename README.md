@@ -601,6 +601,8 @@ public StandardServletMultipartResolver multipartResolver() {
     ...
 }
 </pre>
+스프링부트가 아닌 순수한 스프링MVC에서는 multipartResolver를 빈으로 등록해줘야 한다. <br/>
+
 <br/><br/>
 
 <br/><br/><br/>
