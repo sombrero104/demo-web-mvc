@@ -464,11 +464,12 @@ public String createEventsLimitSubmit(..., Model model) {
 spring.mvc.ignore-default-model-on-redirect=false
 </pre>
 웹 애플리케이션을 실행 후 list 페이지로 리다이렉트 하면 아래와 같이 URI 뒤에 파라미터가 붙는 것을 확인할 수 있다. <br/><br/>
-<img src="./images/redirect_attributes.png" width="65%"><br/>후
+<img src="./images/redirect_attributes.png" width="65%"><br/>
 
 ### RedirectAttributes 사용 
 원하는 값만 리다이렉트 할 때 전달하고 싶다면 RedirectAttributes에 명시적으로 추가할 수 있다. <br/>
-(위의 model 같은 경우에는 이 같은 리다이렉트 용도외에도 쓰이므로, 리다이렉트 용도로만 쓰고 싶은 경우에 쓸 수 있도록 RedirectAttributes를 사용하는 것 같다.) <br/>
+(위의 model 같은 경우에는 이 같은 리다이렉트 용도외에도 쓰이므로, <br/>
+리다이렉트 용도로만 쓰고 싶은 경우에 쓸 수 있도록 RedirectAttributes를 사용하는 것 같다.) <br/>
 우선, 위에서 application.properties에 Ignore-default-model-on-redirect 프로퍼티를 false로 설정한 것을 다시 없앤다. <br/>
 <pre>
 @PostMapping("/events/form/limit")
