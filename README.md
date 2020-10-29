@@ -705,16 +705,21 @@ public ResponseEntity❮Resource❯ fileDownload(@PathVariable String filename) 
 - @Valid 또는 @Validated를 사용해서 값을 검증할 수 있다.
 - BindingResult 아규먼트를 사용해 코드로 바인딩 또는 검증 에러를 확인할 수 있다.
 <pre>
-/**
- * HttpMessageConverter를 사용해서
- * 요청 받은 본문을 Event로 Converting한다.
- */
-@PostMapping
-public Event createEvent(@RequestBody Event event) {
-    // event를 받아서 repository에 저장하는 부분.
-    // 현재는 생략.
-    // 저장 후 저장된 아이디를 가지고 있는 event를 리턴.
-    return event;
+@RestController
+@RequestMapping("/api/events")
+public class EventApi {
+    /**
+     * HttpMessageConverter를 사용해서
+     * 요청 받은 본문을 Event로 Converting한다.
+     */
+    @PostMapping
+    public Event createEvent(@RequestBody Event event) {
+        // event를 받아서 repository에 저장하는 부분.
+        // 현재는 생략.
+        // 저장 후 저장된 아이디를 가지고 있는 event를 리턴.
+        return event;
+    }
+    ...
 }
 </pre>
 
