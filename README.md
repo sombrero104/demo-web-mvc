@@ -1025,10 +1025,19 @@ public class EventValidator implements Validator {
 <img src="./images/validator.png" width="60%"><br/><br/>
 
 ### 혹은, @InitBinder를 사용하지 않고, 커스텀한 Validator를 빈으로 등록해서 사용할 수도 있다. 
+빈으로 등록 후 주입받아서 사용하게 되면, 원하는 시점에 명시적으로 사용할 수 있다는 장점이 있다. <br/>
+빈으로 등록할 경우애는 굳이 Validator 인터페이스를 구현하지 않아도 된다. <br/>
 <pre>
 @Component // 커스텀한 Validator 자체를 빈으로 등록해서 사용해도 된다.
-public class EventValidator implements Validator {
-    ...
+public class EventValidator { // 빈으로 등록할 경우, 굳이 Validator 인터페이스를 구현하지 않아도 된다. 
+    /**
+     * EventValidator를 빈으로 등록해서 사용하는 경우. 
+     */
+    public void validate(Event event, Errors errors) {
+        if(event.getName().equalsIgnoreCase("aaa")) {
+            errors.rejectValue("name", "wrongValue", "the value is not allowed");
+        }
+    }
 }
 </pre>
 <pre>
@@ -1037,6 +1046,13 @@ public class EventValidator implements Validator {
 public class EventController {
     @Autowired
     EventValidator eventValidator; // 커스텀한 Validator를 주입 받는다.
+    ...
+    @PostMapping("/events/form/name")
+    public String createEventsNameSubmit(..., BindingResult bindingResult) {
+        ...
+        eventValidator.validate(event, bindingResult); // 원하는 시점에 명시적으로 커스텀한 Validator 사용.
+        ...
+    }
     ...
 }
 </pre>

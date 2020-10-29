@@ -552,6 +552,9 @@ public class EventController {
         if(bindingResult.hasErrors()) { // bindingResult에 에러가 있으면..
             return "/events/form-name"; // form-name 페이지로..
         }
+
+        eventValidator.validate(event, bindingResult); // 원하는 시점에 명시적으로 커스텀한 Validator 사용.
+
         // name 값을 입력받는 form 페이지 에서 name 값을 받고,
         // 별 문제가 없으면 (에러가 없으면)
         // 아래처럼 이번엔 limit을 입력받는 form 페이지로 이동하게 한다.
