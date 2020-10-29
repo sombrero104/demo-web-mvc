@@ -1,6 +1,7 @@
 package me.sombrero.demowebmvc;
 
 import org.apache.catalina.loader.ResourceEntry;
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -54,14 +55,18 @@ public class FileController {
      */
     @GetMapping("/file/{filename}")
     public ResponseEntity<Resource> fileDownload(@PathVariable String filename) throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:" + filename);
+        Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일.
         File file = resource.getFile();
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,
+
+        Tika tika = new Tika(); // 빈으로 등록해서 사용해도 됨.
+        String mediaType = tika.detect(file); // 티카 라이브러리로 미디어 타입 알아내기.
+
+        return ResponseEntity.ok() // 응답코드 200 정상.
+                .header(HttpHeaders.CONTENT_DISPOSITION, // 다운로드 받을 때 파일 이름.
                         "attachement; filename=\"" + resource.getFilename() + "\"")
-                .header(HttpHeaders.CONTENT_TYPE, "image/png")
-                .header(HttpHeaders.CONTENT_LENGTH, file.length() + "")
-                .body(resource);
+                .header(HttpHeaders.CONTENT_TYPE, mediaType) // 미디어타입. (image/png)
+                .header(HttpHeaders.CONTENT_LENGTH, file.length() + "") // 파일 크기
+                .body(resource); // body에 다운로드할 resource인 파일을 담아서 줌.
     }
 
 }

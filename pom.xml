@@ -39,6 +39,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- 파일의 미디어 타입을 알아내는 라이브러리 티카. -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>1.20</version>
+        </dependency>
     </dependencies>
 
     <build>
