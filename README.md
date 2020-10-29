@@ -1095,6 +1095,7 @@ MVC에서 어떤 요청을 처리하다가.. <br/>
 ### 특정 예외가 발생한 요청을 처리하는 @ExceptionHandler 핸들러 정의
 - 지원하는 메소드 아규먼트 (해당 예외 객체, 핸들러 객체, ...)
 - 지원하는 리턴 값<br/>
+    https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-exceptionhandler <br/>
 - REST API의 경우, 응답 본문에 에러에 대한 정보를 담아주고,<br/>
     상태 코드를 설정하려면, ResponseEntity를 주로 사용한다. <br/>
     (에러 정보를 담아줘야 클라이언트가 왜 에러가 발생했는지 알 수 있기 때문에..)<br/>
@@ -1145,6 +1146,25 @@ public class EventController {
     ...
 }
 </pre>
-<br/><br/><br/><br/>
+
+### * REST API의 경우?
+<pre>
+@RestController
+@RequestMapping("/api/events")
+public class EventApi {
+    /**
+     * [ REST API의 @ExceptionHandler 설정. ]
+     * 응답 코드와 왜 에러가 발생했는지 메세지를 작성해서 전달해 주는 것이 좋다. 
+     */
+    @ExceptionHandler
+    public ResponseEntity errorHandler() {
+        return ResponseEntity.badRequest().body("can't create event as ... :(");
+    }
+    ...
+}
+</pre><br/><br/><br/><br/>
+
+
+
 
 <br/><br/><br/>

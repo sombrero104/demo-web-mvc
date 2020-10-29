@@ -18,9 +18,13 @@ import javax.validation.Valid;
 @RequestMapping("/api/events")
 public class EventApi {
 
+    /**
+     * [ REST API의 @ExceptionHandler 설정. ]
+     * 응답 코드와 왜 에러가 발생했는지 메세지를 작성해서 전달해 주는 것이 좋다.
+     */
     @ExceptionHandler
     public ResponseEntity errorHandler() {
-        return
+        return ResponseEntity.badRequest().body("can't create event as ... :(");
     }
 
 
