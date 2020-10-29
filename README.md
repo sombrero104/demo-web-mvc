@@ -760,7 +760,9 @@ RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등�
 2. HttpMessageConvertersAutoConfiguration <br/>
 <br/>
 
-## @RequestBody와 HttpEntity 차이. 
+## @RequestBody와 HttpEntity 차이.
+@RequestBody로 요청 본문을 받을 때, 핸들러어댑터가 HttpMessageConverter를 사용하여 요청 본문을 변환한다. <br/>
+HttpEntity는 본문 외에도 헤더 정보를 들고 올 수 있다. <br/>
 <pre>
 /**
  * [HttpMessageConverter]
