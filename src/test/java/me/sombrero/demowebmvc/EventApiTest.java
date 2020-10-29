@@ -37,7 +37,8 @@ public class EventApiTest {
 
         mockMvc.perform(post("/api/events")
                 .contentType(MediaType.APPLICATION_JSON_UTF8) // 보내는 Content-Type이 무엇인지 알려줘야 한다. (그래야 맞는 컨버터가 선택되어 실행됨.)
-                .content(jsonStr)) // 본문(body)에 JSON 문자열을 보낸다.
+                .content(jsonStr) // 본문(body)에 JSON 문자열을 보낸다.
+                .accept(MediaType.APPLICATION_JSON)) // 어떠한 미디어 타입의 응답을 원하는지를 Accept 헤더에 담아서 보낸다.
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104")) // 다시 결과로 받은 JSON을 jsonPath로 결과값 확인.
