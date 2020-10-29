@@ -1,6 +1,7 @@
 package me.sombrero.demowebmvc;
 
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -96,6 +97,9 @@ public class EventApi {
         return ResponseEntity.ok(event);
         // return ResponseEntity.ok().body(event);
         // return ResponseEntity.ok().build();
+
+        // 좀 더 세밀한 응답코드로 보내고 싶은 경우..
+        // return new ResponseEntity<Event>(event, HttpStatus.CREATED); // 201 Created 응답코드로 보낸다.
     }
 
 }

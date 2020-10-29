@@ -850,6 +850,29 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
+<pre>
+/**
+ * ResponseEntity❮T❯
+ *     : T 객체가 응답 body에 들어가는 객체가 된다.
+ * ResponseEntity를 사용할 때에는 @RestController를 사용하지 않아도 된다.
+ */
+@PostMapping
+public ResponseEntity❮Event❯ createEvent(@RequestBody @Valid Event event, BindingResult bindingResult) {
+    // save event.
+
+    if(bindingResult.hasErrors()) {
+        return ResponseEntity.badRequest().build(); // 팩토리 메소드들 중에서 어떤것들은 build()를 붙여줘야 함. (무슨 차이??)
+    }
+
+    // ok()와 같이 기본적으로 자주 쓰이는 메소드들은 팩토리 메소드로 제공한다.
+    return ResponseEntity.ok(event);
+    // return ResponseEntity.ok().body(event);
+    // return ResponseEntity.ok().build();
+    
+    // 좀 더 세밀한 응답코드로 보내고 싶은 경우.. 
+    // return new ResponseEntity❮Event❯(event, HttpStatus.CREATED); // 201 Created 응답코드로 보낸다. 
+}
+</pre>
 
 
 <br/><br/><br/>
