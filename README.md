@@ -697,10 +697,10 @@ public ResponseEntity❮Resource❯ fileDownload(@PathVariable String filename) 
             .body(resource); // body에 다운로드할 resource인 파일을 담아서 줌.
 }
 </pre>
-<br/><br/>
+<br/><br/><br/>
 
-## @RequestBody & HttpEntity
-### @RequestBody
+# @RequestBody & HttpEntity
+## @RequestBody
 - 요청 본문(body)에 들어있는 데이터를 **_HttpMessageConverter를 통해_** 변환한 객체로 받아올 수 있다. 
 - @Valid 또는 @Validated를 사용해서 값을 검증할 수 있다.
 - BindingResult 아규먼트를 사용해 코드로 바인딩 또는 검증 에러를 확인할 수 있다.
@@ -722,7 +722,6 @@ public class EventApi {
     ...
 }
 </pre>
-<br/><br/>
 
 ## HttpMessageConverter
 - 스프링MVC 설정(WebMvcConfigurer)에서 설정할 수 있다. 
