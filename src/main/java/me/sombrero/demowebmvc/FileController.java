@@ -52,10 +52,12 @@ public class FileController {
 
     /**
      * 파일 다운로드
+     * 파일 다운로드 URI 예시:
+     *      http://localhost:8080/file/test.png
      */
     @GetMapping("/file/{filename}")
     public ResponseEntity<Resource> fileDownload(@PathVariable String filename) throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일.
+        Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일. (현재는 resource 밑에 파일 있음.)
         File file = resource.getFile();
 
         Tika tika = new Tika(); // Tika를 빈으로 등록해서 사용해도 됨.
