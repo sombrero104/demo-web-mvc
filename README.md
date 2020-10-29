@@ -669,7 +669,34 @@ public class FileControllerTest {
     }
 
 }
+</pre><br/>
+
+### 파일 다운로드
+ResponseEntity<Resource>로 파일에 대한 헤더정보와 body에 resource를 담아서 반환한다. <br/> 
+<pre>
+/**
+ * 파일 다운로드
+ * 파일 다운로드 URI 예시:
+ *      http://localhost:8080/file/test.png
+ */
+@GetMapping("/file/{filename}")
+@ResponseBody // ResponseEntity를 반환할 때에는 생략 가능.
+public ResponseEntity<Resource> fileDownload(@PathVariable String filename) throws IOException {
+    Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일. (현재는 resource 밑에 파일 있음.)
+    File file = resource.getFile();
+
+    Tika tika = new Tika(); // Tika를 빈으로 등록해서 사용해도 됨.
+    String mediaType = tika.detect(file); // 티카 라이브러리로 미디어 타입 알아내기.
+
+    return ResponseEntity.ok() // 응답코드 200 정상.
+            .header(HttpHeaders.CONTENT_DISPOSITION, // 다운로드 받을 때 파일 이름.
+                    "attachement; filename=\"" + resource.getFilename() + "\"")
+            .header(HttpHeaders.CONTENT_TYPE, mediaType) // 미디어타입. (image/png)
+            .header(HttpHeaders.CONTENT_LENGTH, file.length() + "") // 파일 크기
+            .body(resource); // body에 다운로드할 resource인 파일을 담아서 줌.
+}
 </pre>
+
 <br/><br/>
 
 

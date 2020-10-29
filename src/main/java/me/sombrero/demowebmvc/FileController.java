@@ -9,10 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,6 +53,7 @@ public class FileController {
      *      http://localhost:8080/file/test.png
      */
     @GetMapping("/file/{filename}")
+    @ResponseBody // ResponseEntity를 반환할 때에는 생략 가능.
     public ResponseEntity<Resource> fileDownload(@PathVariable String filename) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일. (현재는 resource 밑에 파일 있음.)
         File file = resource.getFile();
