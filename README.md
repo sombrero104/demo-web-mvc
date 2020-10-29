@@ -739,12 +739,12 @@ public class EventApi {
         Jackson 라이브러리(Jackson2ObjectMapper등을 사용할 수 있는 라이브러리)가 기본적으로 들어가있다. <br/>
         때문에 MappingJackson2HttpMessageConverter가 기본적으로 등록이 된다.  <br/>
 
-### 스프링에서 기본 HttpMessageConverter들이 등록되는 곳. 
+## 스프링에서 기본 HttpMessageConverter들이 등록되는 곳. 
 RequestMappingHandlerAdapter의 생성자를 보면 <br/>
 RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등록한다.  <br/>
 스프링이 추가적으로 컨버터들을 등록할 때에는..  <br/>
 
-#### 1. 기본 스프링MVC의 경우 (스프링부트 사용안하는 경우.)
+### 1. 기본 스프링MVC의 경우 (스프링부트 사용안하는 경우.)
 1. @EnableWebMvc <br/>
 2. DelegatingWebMvcConfiguration <br/>
 3. WebMvcConfigurationSupport <br/>
@@ -753,7 +753,7 @@ RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등�
 	- (3) getMessageConverters() <br/>
 	- (4) messageConverters가 비어있으면, addDefaultHttpMessageConverters() <br/>
 
-#### 2. 스프링부트의 경우
+### 2. 스프링부트의 경우
 1. spring.factories <br/>
 2. HttpMessageConvertersAutoConfiguration <br/>
 <br/>
