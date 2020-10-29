@@ -697,7 +697,7 @@ public ResponseEntity❮Resource❯ fileDownload(@PathVariable String filename) 
             .body(resource); // body에 다운로드할 resource인 파일을 담아서 줌.
 }
 </pre>
-<br/><br/><br/>
+<br/><br/><br/><br/>
 
 # @RequestBody & HttpEntity
 <br/>
