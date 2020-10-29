@@ -730,6 +730,7 @@ public class EventApi {
 - 기본 컨버터를 등록하는 곳. 
     - WebMvcConfigurationSupport.addDefaultHttpMessageConverters 에서 <br/>
         기본적인 컨버터들을 등록하는 것을 확인할 수 있다. <br/>
+- 핸들러매핑과 핸들러어댑터가 컨버터들을 사용한다.  <br/>
 <pre>
 protected final void addDefaultHttpMessageConverters(List❮HttpMessageConverter❮?❯❯ messageConverters) {
     StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
