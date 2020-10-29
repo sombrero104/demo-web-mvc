@@ -914,6 +914,16 @@ public void createEvent() throws Exception {
     - 프로젝트 코드 분석. 
     - https://github.com/spring-projects/spring-petclinic
     - 컨트롤러 코드 위주로..
-    
+<br/><br/><br/><br/>
+
+# 모델: @ModelAttribute 또 다른 사용법
+## @ModelAttribute의 다른 용법
+- @RequestMapping을 사용한 핸들러 메소드의 아규먼트에 사용하기.
+- @Controller 또는 @ControllerAdvice를 사용한 클래스에서 모델 정보를 초기화할 때 사용한다.
+- @RequestMapping과 같이 사용하면 해당 메소드에서 리턴하는 객체를 모델에 넣어준다.
+    - RequestToViewNameTranslator
+## @ModelAttribute 메소드
+<pre>
+</pre>
 
 <br/><br/><br/>
