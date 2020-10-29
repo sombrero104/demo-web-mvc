@@ -697,9 +697,97 @@ public ResponseEntity<Resource> fileDownload(@PathVariable String filename) thro
             .body(resource); // body에 다운로드할 resource인 파일을 담아서 줌.
 }
 </pre>
-
 <br/><br/>
 
+## @RequestBody & HttpEntity
+### @RequestBody
+- 요청 본문(body)에 들어있는 데이터를 **_HttpMessageConverter를 통해_** 변환한 객체로 받아올 수 있다. 
+- @Valid 또는 @Validated를 사용해서 값을 검증할 수 있다.
+- BindingResult 아규먼트를 사용해 코드로 바인딩 또는 검증 에러를 확인할 수 있다.
+<pre>
+/**
+ * HttpMessageConverter를 사용해서
+ * 요청 받은 본문을 Event로 Converting한다.
+ */
+@PostMapping
+public Event createEvent(@RequestBody Event event) {
+    // event를 받아서 repository에 저장하는 부분.
+    // 현재는 생략.
+    // 저장 후 저장된 아이디를 가지고 있는 event를 리턴.
+    return event;
+}
+</pre>
+
+### HttpMessageConverter
+- 스프링MVC 설정(WebMvcConfigurer)에서 설정할 수 있다. 
+- configurerMessageConverters(): 기본 메시지 컨버터 대체. 
+- extendMessageConverters(): 메시지 컨버터에 추가. 
+- 기본 컨버터를 등록하는 곳. 
+    - WebMvcConfigurationSupport.addDefaultHttpMessageConverters 에서 <br/>
+        기본적인 컨버터들을 등록하는 것을 확인할 수 있다. <br/>
+<pre>
+protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
+    StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+    stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
+
+    messageConverters.add(new ByteArrayHttpMessageConverter());
+    messageConverters.add(stringHttpMessageConverter);
+    messageConverters.add(new ResourceHttpMessageConverter());
+    messageConverters.add(new ResourceRegionHttpMessageConverter());
+    try {
+        messageConverters.add(new SourceHttpMessageConverter<>());
+    }
+    catch (Throwable ex) {
+        // Ignore when no TransformerFactory implementation is available...
+    }
+    messageConverters.add(new AllEncompassingFormHttpMessageConverter());
+
+    if (romePresent) {
+        messageConverters.add(new AtomFeedHttpMessageConverter());
+        messageConverters.add(new RssChannelHttpMessageConverter());
+    }
+
+    if (jackson2XmlPresent) {
+        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.xml();
+        if (this.applicationContext != null) {
+            builder.applicationContext(this.applicationContext);
+        }
+        messageConverters.add(new MappingJackson2XmlHttpMessageConverter(builder.build()));
+    }
+    else if (jaxb2Present) {
+        messageConverters.add(new Jaxb2RootElementHttpMessageConverter());
+    }
+
+    if (jackson2Present) {
+        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.json();
+        if (this.applicationContext != null) {
+            builder.applicationContext(this.applicationContext);
+        }
+        messageConverters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+    }
+    else if (gsonPresent) {
+        messageConverters.add(new GsonHttpMessageConverter());
+    }
+    else if (jsonbPresent) {
+        messageConverters.add(new JsonbHttpMessageConverter());
+    }
+
+    if (jackson2SmilePresent) {
+        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.smile();
+        if (this.applicationContext != null) {
+            builder.applicationContext(this.applicationContext);
+        }
+        messageConverters.add(new MappingJackson2SmileHttpMessageConverter(builder.build()));
+    }
+    if (jackson2CborPresent) {
+        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.cbor();
+        if (this.applicationContext != null) {
+            builder.applicationContext(this.applicationContext);
+        }
+        messageConverters.add(new MappingJackson2CborHttpMessageConverter(builder.build()));
+    }
+}
+</pre>
 
 
 <br/><br/><br/>
