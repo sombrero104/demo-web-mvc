@@ -1175,6 +1175,38 @@ public class EventApi {
 - 특정 패키지 이하의 컨트롤러에만 적용하기.
 - 특정 클래스 타입에만 적용하기. 
 
+<pre>
+// @ControllerAdvice // 전역 컨트롤러가 된다. (모든 컨트롤러에 다 적용.)
+// @ControllerAdvice(assignableTypes = EventController.class) // Event 컨트롤러에만 적용.
+@ControllerAdvice(assignableTypes = {EventController.class, EventApi.class}) // Event, EventApi 컨트롤러에만 적용.
+public class BaseController {
+    /**
+     * [ @ExceptionHandler ]
+     */
+    @ExceptionHandler({EventException.class, RuntimeException.class})
+    public String eventErrorHandler(RuntimeException exception, Model model) {
+        ...
+    }
+
+    /**
+     * [ @InitBinder ]
+     */
+    @InitBinder("event")
+    public void initEventBinder(WebDataBinder webDataBinder) {
+        ...
+    }
+
+    /**
+     * [ @ModelAttribute ]
+     */
+    @ModelAttribute
+    public void categories(Model model) {
+        ...
+    }
+    ...
+}
+</pre>
+
 ### @RestControllerAdvice
 @RestControllerAdvice도 @ControllerAdvice와 똑같다.<br/>
 단지 @ReesponseBody만 추가적으로 붙어있을 뿐.. <br/>
