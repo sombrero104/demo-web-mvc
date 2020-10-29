@@ -1130,6 +1130,20 @@ public String eventsFormName(Model model) {
 @ExceptionHandler에서 우리가 직접 작성했던 메세지가 나오는 것을 확인할 수 있다.<br/>
 
 <img src="./images/exceptionHandler.png" width="50%"><br/>
+
+### 여러 에러를 같이 처리하고 싶은 경우. 
+<pre>
+@Controller
+@SessionAttributes({"event"})
+public class EventController {
+    @ExceptionHandler({EventException.class, RuntimeException.class}) // 여러 에러를 같이 처리하고 싶은 경우.
+    public String eventErrorHandler(RuntimeException exception, Model model) { // 두 에러를 다 받을 수 있는 상위 타입으로 정의해야 한다.
+        model.addAttribute("message", "runtime error");
+        return "error"; // error 페이지 뷰를 보여준다.
+    }
+    ...
+}
+</pre>
 <br/><br/><br/><br/>
 
 <br/><br/><br/>
