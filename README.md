@@ -421,7 +421,7 @@ public String getEvents(Model model) {
     event.setName("sombrero104");
     event.setLimit(10);
 
-    List<Event> eventList = new ArrayList<>();
+    List❮Event❯ eventList = new ArrayList❮❯();
     eventList.add(event);
     model.addAttribute("eventList", eventList);
 
@@ -502,7 +502,7 @@ public String getEvents(@ModelAttribute("newEvent") Event event,
     event2.setName("sombrero104");
     event2.setLimit(10);
 
-    List<Event> eventList = new ArrayList<>();
+    List❮Event❯ eventList = new ArrayList❮❯();
     eventList.add(event2);
     eventList.add(event);
     model.addAttribute("eventList", eventList);
@@ -552,7 +552,7 @@ public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) 
     // FlashAttributes로 넣은 데이터를 @ModelAttribute("newEvent")가 아닌 그냥 model로도 가져올 수 있다.
     Event newEvent = (Event) model.asMap().get("newEvent");
 
-    List<Event> eventList = new ArrayList<>();
+    List❮Event❯ eventList = new ArrayList<>();
     eventList.add(event2);
     eventList.add(newEvent);
     model.addAttribute("eventList", eventList);
@@ -682,7 +682,7 @@ ResponseEntity<Resource>로 파일에 대한 헤더정보와 body에 resource를
  */
 @GetMapping("/file/{filename}")
 @ResponseBody // ResponseEntity를 반환할 때에는 생략 가능.
-public ResponseEntity<Resource> fileDownload(@PathVariable String filename) throws IOException {
+public ResponseEntity❮Resource❯ fileDownload(@PathVariable String filename) throws IOException {
     Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일. (현재는 resource 밑에 파일 있음.)
     File file = resource.getFile();
 
@@ -726,7 +726,7 @@ public Event createEvent(@RequestBody Event event) {
     - WebMvcConfigurationSupport.addDefaultHttpMessageConverters 에서 <br/>
         기본적인 컨버터들을 등록하는 것을 확인할 수 있다. <br/>
 <pre>
-protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
+protected final void addDefaultHttpMessageConverters(List❮HttpMessageConverter❮?❯❯ messageConverters) {
     StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
     stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
 
