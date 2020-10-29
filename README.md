@@ -760,7 +760,7 @@ RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등�
 2. HttpMessageConvertersAutoConfiguration <br/>
 <br/>
 
-### @RequestBody와 HttpEntity 차이. 
+## @RequestBody와 HttpEntity 차이. 
 <pre>
 /**
  * [HttpMessageConverter]
@@ -804,7 +804,7 @@ public class EventApi {
 }
 </pre><br/>
 
-## 이 외 @Valid, BindingResult 사용해보기. 
+### 이 외 @Valid, BindingResult 사용해보기. 
 <pre>
 /**
  * [@Valid 사용하기. & BindingResult로 에러 담기.]
