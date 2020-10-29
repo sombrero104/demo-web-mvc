@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest
-public class SampleControllerTest {
+public class EventControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -85,12 +85,12 @@ public class SampleControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello sombrero"))
-                .andExpect(handler().handlerType(SampleController.class)) // 어떤 핸들러가 사용되는지 출력.
+                .andExpect(handler().handlerType(EventController.class)) // 어떤 핸들러가 사용되는지 출력.
                 .andExpect(handler().methodName("helloSombrero")); // 핸들러의 메소드는 'helloSombrero'일 것이다.*/
         /**
          * Handler:
-         *  Type = me.sombrero.demowebmvc.SampleController
-         *  Method = public java.lang.String me.sombrero.demowebmvc.SampleController.helloSombrero(java.lang.String)
+         *  Type = me.sombrero.demowebmvc.EventController
+         *  Method = public java.lang.String me.sombrero.demowebmvc.EventController.helloSombrero(java.lang.String)
          */
 
 

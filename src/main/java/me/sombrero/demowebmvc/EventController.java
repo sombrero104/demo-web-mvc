@@ -29,7 +29,7 @@ import java.util.*;
 // @RequestMapping(method = RequestMethod.GET) // 이 안의 모든 핸들러에 GET만 허용.
 // @RequestMapping("/hello")
 @SessionAttributes({"event"})
-public class SampleController {
+public class EventController {
 
     /**
      * HTTP Method를 지정하지 않으면 모든 HTTP Method를 다 허용함.
