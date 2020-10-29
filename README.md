@@ -835,6 +835,8 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
 </pre><br/><br/><br/><br/>
 
 # @ResponseBody & ResponseEntity
+<br/>
+
 ## @RequestBody
 - 데이터를 HttpMessageConverter를 사용해 응답 본문 메시지로 보낼 때 사용한다. <br/>
     (HttpMessageConverter를 사용해서 핸들러 메소드에서 리턴하는 값을 <br/>
@@ -848,6 +850,8 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
     그래서 테스트 코드에서 요청을 보낼때에도 화면에 나타내는게 아니기 때문에<br/>
     Accept 헤더를 설정하지 않아도 json 형태로 응답을 보낸다.)<br/>
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
+<br/>
+
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
 
@@ -895,7 +899,7 @@ public void createEvent() throws Exception {
             .andDo(print())
             .andExpect(status().isBadRequest());
 }
-</pre>
+</pre><br/><br/><br/><br/>
 
 
 <br/><br/><br/>
