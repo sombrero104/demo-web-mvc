@@ -735,7 +735,8 @@ public class EventApi {
     핸들러어댑터에 등록되어 있는 여러 HttpMessageConverter 중에,<br/>
     현재 요청에 들어있는 본문을 컨버팅할 수 있는 컨버터를 선택해서 컨버젼을 한다. <br/>
 - 예를 들어, 본문이 JSON으로 들어온 경우, (요청 시 요청헤더에 Content-Type을 알려줘야 한다.)<br/>
-    요청헤더의 Content-Type을 보고 여러 HttpMessageConverter 중에 JSON을 컨버팅할 수 있는 컨버터를 선택해서<br/>
+    요청헤더의 Content-Type을 보고 여러 HttpMessageConverter 중에.. <br/>
+    JSON을 컨버팅할 수 있는 컨버터(MappingJackson2HttpMessageConverter)를 선택해서<br/>
     JSON 본문을 파라미터에 정의한 객체로 변환해준다.  <br/>
 <pre>
 protected final void addDefaultHttpMessageConverters(List❮HttpMessageConverter❮?❯❯ messageConverters) {
