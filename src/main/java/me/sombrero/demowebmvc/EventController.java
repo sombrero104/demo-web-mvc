@@ -34,10 +34,7 @@ import java.util.*;
 public class EventController {
 
     @Autowired
-    EventValidator eventValidator; // 커스텀한 Validator.
-
-
-
+    EventValidator eventValidator; // 커스텀한 Validator를 @InitBinder로 등록하지 않고 빈으로 등록하는 방법.
 
     /**
      * [ @InitBinder ]
