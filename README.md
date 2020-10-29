@@ -1212,5 +1212,15 @@ public class BaseController {
 단지 @ReesponseBody만 추가적으로 붙어있을 뿐.. <br/>
 
 https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-controller-advice <br/>
+<br/><br/><br/><br/>
+
+### 스프링 MVC 강좌 마무리
+시간 관계 상 살펴보지 못한 내용. 
+- 비동기 요청 처리.
+- CORS 설정.
+- HTTP/2
+- 웹 소켓
+- 웹 플럭스
+- ...
 
 <br/><br/><br/>
