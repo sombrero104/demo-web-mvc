@@ -938,7 +938,18 @@ public void categories(Model model) {
     model.addAttribute("categories", List.of("study", "seminar", "hobby", "social"));
 }
 </pre>
-테스트 코드로 출력했을 때 결과. 
+테스트 코드로 모델 애트리뷰트에 'categories'가 있는지 확인할 수 있다. 
+<pre>
+@Test
+public void getEvents() throws Exception {
+    ...
+    mockMvc.perform(get("/events/list")
+        ...
+        .andExpect(model().attributeExists("categories")) // 모델 애트리뷰트에 'categories'가 있는지 확인.
+        ...
+}
+</pre>
+테스트 코드로 ModelAndView를 출력했을 때 결과. 
 <pre>
 ModelAndView:
         Attribute = categories
