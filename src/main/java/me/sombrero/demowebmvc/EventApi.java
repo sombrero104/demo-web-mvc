@@ -2,6 +2,7 @@ package me.sombrero.demowebmvc;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,7 +63,7 @@ public class EventApi {
      *      커스텀하게 직접 400에러를 보내면서 에러 본문에 우리가 원하는 응답을 넣거나, status 값을 좀 더 구체적으로 바꿔주거나..
      *      우리가 원하는 에러 처리를 할 수 있다.
      */
-    @PostMapping
+    /*@PostMapping
     public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingResult) {
         // event를 받아서 repository에 저장하는 부분.
         // 현재는 생략.
@@ -75,6 +76,25 @@ public class EventApi {
 
         // 저장 후 저장된 아이디를 가지고 있는 event를 리턴.
         return event;
+    }*/
+
+
+    /**
+     * ResponseEntity<T>
+     *     : T 객체가 응답 body에 들어가는 객체가 된다.
+     * ResponseEntity를 사용할 때에는 @RestController를 사용하지 않아도 된다.
+     */
+    @PostMapping
+    public ResponseEntity<Event> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult) {
+        // save event.
+
+        if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(error -> {
+                System.out.println(error);
+            });
+        }
+
+        return ResponseEntity.ok(event);
     }
 
 }
