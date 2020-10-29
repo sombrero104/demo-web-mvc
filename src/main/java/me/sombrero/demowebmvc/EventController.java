@@ -34,8 +34,19 @@ import java.util.*;
 public class EventController {
 
     @ExceptionHandler
-    public String eventErrorHandler(EventException eventException, Model model) {
+    public String eventErrorHandler(EventException exception, Model model) {
         model.addAttribute("message", "event error");
+        return "error"; // error 페이지 뷰를 보여준다.
+    }
+
+    /**
+     * 우리가 직접 만든 EventException가 RuntimeException를 상속받고 있더라도
+     * EventException가 발생하면 위의 eventErrorHandler()가 적용된다.
+     * (가장 구체적인 @ExceptionHandler 메소드가 실행된다.)
+     */
+    @ExceptionHandler
+    public String runtimeErrorHandler(RuntimeException exception, Model model) {
+        model.addAttribute("message", "runtime error");
         return "error"; // error 페이지 뷰를 보여준다.
     }
 
