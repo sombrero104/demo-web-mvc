@@ -33,22 +33,34 @@ import java.util.*;
 @SessionAttributes({"event"})
 public class EventController {
 
-    @ExceptionHandler
+    /**
+     * 여러 에러를 처리하고 싶은 경우.
+     */
+    @ExceptionHandler({EventException.class, RuntimeException.class}) // 여러 에러를 같이 처리하고 싶은 경우.
+    public String eventErrorHandler(RuntimeException exception, Model model) { // 두 에러를 다 받을 수 있는 상위 타입으로 정의해야 한다.
+        model.addAttribute("message", "runtime error");
+        return "error"; // error 페이지 뷰를 보여준다.
+    }
+
+    /**
+     * 우리가 직접 만든 EventException만 처리하고 싶은 경우.
+     */
+    /*@ExceptionHandler
     public String eventErrorHandler(EventException exception, Model model) {
         model.addAttribute("message", "event error");
         return "error"; // error 페이지 뷰를 보여준다.
-    }
+    }*/
 
     /**
      * 우리가 직접 만든 EventException가 RuntimeException를 상속받고 있더라도
      * EventException가 발생하면 위의 eventErrorHandler()가 적용된다.
      * (가장 구체적인 @ExceptionHandler 메소드가 실행된다.)
      */
-    @ExceptionHandler
+    /*@ExceptionHandler
     public String runtimeErrorHandler(RuntimeException exception, Model model) {
         model.addAttribute("message", "runtime error");
         return "error"; // error 페이지 뷰를 보여준다.
-    }
+    }*/
 
 
 
