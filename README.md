@@ -1223,6 +1223,6 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc
 - 웹 플럭스
 - ...
 
-<img src="./images/finish.png" width="60%"><br/>
+<img src="./images/finish.png" width="50%"><br/>
 
 <br/><br/><br/>
