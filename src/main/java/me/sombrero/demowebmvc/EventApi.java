@@ -89,11 +89,10 @@ public class EventApi {
         // save event.
 
         if(bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(error -> {
-                System.out.println(error);
-            });
+            return ResponseEntity.badRequest().build(); // 팩토리 메소드들 중에서 어떤것들은 build()를 붙여줘야 함. (무슨 차이??)
         }
 
+        // ok()와 같이 기본적으로 자주 쓰이는 메소드들은 팩토리 메소드로 제공한다.
         return ResponseEntity.ok(event);
     }
 

@@ -27,7 +27,7 @@ public class EventApiTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Test
+    /*@Test
     public void createEvent() throws Exception {
         Event event = new Event();
         event.setName("sombrero104");
@@ -43,6 +43,21 @@ public class EventApiTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("sombrero104")) // 다시 결과로 받은 JSON을 jsonPath로 결과값 확인.
                 .andExpect(jsonPath("limit").value(20));
+    }*/
+
+    @Test
+    public void createEvent() throws Exception {
+        Event event = new Event();
+        event.setName("sombrero104");
+        event.setLimit(-20);
+
+        String jsonStr = objectMapper.writeValueAsString(event); // ObjectMapper로 Event 객체를 JSON 문자열로 변환.
+
+        mockMvc.perform(post("/api/events")
+                .contentType(MediaType.APPLICATION_JSON_UTF8) // 보내는 Content-Type이 무엇인지 알려줘야 한다. (그래야 맞는 컨버터가 선택되어 실행됨.)
+                .content(jsonStr)) // 본문(body)에 JSON 문자열을 보낸다.
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 
 }
