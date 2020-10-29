@@ -1126,7 +1126,7 @@ public String eventsFormName(Model model) {
     throw new EventException();
 }
 </pre>
-실행하면 직접 만든 에러페이지가 뜨고 @ExceptionHandler에서 전달한 메세지가 나오는 것을 확인할 수 있다.<br/>
+실행하면 직접 만든 에러페이지가 뜨고 @ExceptionHandler에서 직접 작성한 메세지가 나오는 것을 확인할 수 있다.<br/>
 
 <img src="./images/exceptionHandler.png" width="50%"><br/>
 <br/><br/><br/><br/>
