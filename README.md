@@ -722,14 +722,12 @@ public class EventApi {
     ...
 }
 </pre>
+<br/><br/>
 
-### HttpMessageConverter
+## HttpMessageConverter
 - 스프링MVC 설정(WebMvcConfigurer)에서 설정할 수 있다. 
 - configurerMessageConverters(): 기본 메시지 컨버터 대체. 
-- extendMessageConverters(): 메시지 컨버터에 추가. 
-- 기본 컨버터를 등록하는 곳. 
-    - WebMvcConfigurationSupport.addDefaultHttpMessageConverters 에서 <br/>
-        기본적인 컨버터들을 등록하는 것을 확인할 수 있다. <br/>
+- extendMessageConverters(): 메시지 컨버터에 추가.         
 - **_핸들러어댑터_** 가 컨버터들을 사용한다. <br/>
 - 핸들러어댑터가 메소드 아규먼트를 리졸빙할 때, <br/>
     핸들러어댑터에 등록되어 있는 여러 HttpMessageConverter 중에,<br/>
@@ -741,69 +739,24 @@ public class EventApi {
     - 스프링부트를 사용하면,<br/>
         Jackson 라이브러리(Jackson2ObjectMapper등을 사용할 수 있는 라이브러리)가 기본적으로 들어가있다. <br/>
         때문에 MappingJackson2HttpMessageConverter가 기본적으로 등록이 된다.  <br/>
-<pre>
-protected final void addDefaultHttpMessageConverters(List❮HttpMessageConverter❮?❯❯ messageConverters) {
-    StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-    stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
 
-    messageConverters.add(new ByteArrayHttpMessageConverter());
-    messageConverters.add(stringHttpMessageConverter);
-    messageConverters.add(new ResourceHttpMessageConverter());
-    messageConverters.add(new ResourceRegionHttpMessageConverter());
-    try {
-        messageConverters.add(new SourceHttpMessageConverter<>());
-    }
-    catch (Throwable ex) {
-        // Ignore when no TransformerFactory implementation is available...
-    }
-    messageConverters.add(new AllEncompassingFormHttpMessageConverter());
+### 기본 HttpMessageConverter를 등록하는 곳. 
+RequestMappingHandlerAdapter의 생성자를 보면 <br/>
+RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등록한다.  <br/>
+스프링이 추가적으로 컨버터들을 등록할 때에는..  <br/>
 
-    if (romePresent) {
-        messageConverters.add(new AtomFeedHttpMessageConverter());
-        messageConverters.add(new RssChannelHttpMessageConverter());
-    }
+#### 기본 스프링MVC의 경우 (스프링부트 사용안하는 경우.)
+1. @EnableWebMvc <br/>
+2. DelegatingWebMvcConfiguration <br/>
+3. WebMvcConfigurationSupport <br/>
+	- (1) RequestMappingHandlerAdapter를 빈으로 등록하는 부분.. <br/>
+	- (2) requestMappingHandlerAdapter() <br/>
+	- (3) getMessageConverters() <br/>
+	- (4) messageConverters가 비어있으면, addDefaultHttpMessageConverters() <br/>
 
-    if (jackson2XmlPresent) {
-        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.xml();
-        if (this.applicationContext != null) {
-            builder.applicationContext(this.applicationContext);
-        }
-        messageConverters.add(new MappingJackson2XmlHttpMessageConverter(builder.build()));
-    }
-    else if (jaxb2Present) {
-        messageConverters.add(new Jaxb2RootElementHttpMessageConverter());
-    }
-
-    if (jackson2Present) {
-        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.json();
-        if (this.applicationContext != null) {
-            builder.applicationContext(this.applicationContext);
-        }
-        messageConverters.add(new MappingJackson2HttpMessageConverter(builder.build()));
-    }
-    else if (gsonPresent) {
-        messageConverters.add(new GsonHttpMessageConverter());
-    }
-    else if (jsonbPresent) {
-        messageConverters.add(new JsonbHttpMessageConverter());
-    }
-
-    if (jackson2SmilePresent) {
-        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.smile();
-        if (this.applicationContext != null) {
-            builder.applicationContext(this.applicationContext);
-        }
-        messageConverters.add(new MappingJackson2SmileHttpMessageConverter(builder.build()));
-    }
-    if (jackson2CborPresent) {
-        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.cbor();
-        if (this.applicationContext != null) {
-            builder.applicationContext(this.applicationContext);
-        }
-        messageConverters.add(new MappingJackson2CborHttpMessageConverter(builder.build()));
-    }
-}
-</pre>
+#### 스프링부트의 경우
+1. spring.factories <br/>
+2. HttpMessageConvertersAutoConfiguration <br/>
 
 
 <br/><br/><br/>
