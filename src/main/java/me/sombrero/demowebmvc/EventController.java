@@ -34,13 +34,14 @@ import java.util.*;
 public class EventController {
 
     /**
+     * [ @ExceptionHandler ]
      * 여러 에러를 처리하고 싶은 경우.
      */
-    @ExceptionHandler({EventException.class, RuntimeException.class}) // 여러 에러를 같이 처리하고 싶은 경우.
+    /*@ExceptionHandler({EventException.class, RuntimeException.class}) // 여러 에러를 같이 처리하고 싶은 경우.
     public String eventErrorHandler(RuntimeException exception, Model model) { // 두 에러를 다 받을 수 있는 상위 타입으로 정의해야 한다.
         model.addAttribute("message", "runtime error");
         return "error"; // error 페이지 뷰를 보여준다.
-    }
+    }*/
 
     /**
      * 우리가 직접 만든 EventException만 처리하고 싶은 경우.
@@ -74,7 +75,7 @@ public class EventController {
      * WebDataBinder 인자는 반드시 있어야 한다.
      */
     // @InitBinder
-    @InitBinder("event") // 'event'라는 이름의 모델 애트리뷰트를 바인딩 받을 때에만 @InitBinder를 사용하도록 설정할 수 있다.
+    /*@InitBinder("event") // 'event'라는 이름의 모델 애트리뷰트를 바인딩 받을 때에만 @InitBinder를 사용하도록 설정할 수 있다.
     public void initEventBinder(WebDataBinder webDataBinder) {
         // 받고 싶지 않은 필드 값을 걸러낼 수 있다.
         // (원치 않는 데이터가 수정이 될수도 있기 때문에..)
@@ -82,7 +83,7 @@ public class EventController {
         webDataBinder.setDisallowedFields("id");
         // webDataBinder.addCustomFormatter(...); // 직접 커스텀한 포매터 등록.
         // webDataBinder.setValidator(new EventValidator()); // 커스텀한 Validator 등록.
-    }
+    }*/
 
 
 
@@ -96,10 +97,10 @@ public class EventController {
     public List<String> categories(Model model) {
         return List.of("study", "seminar", "hobby", "social");
     }*/
-    @ModelAttribute
+    /*@ModelAttribute
     public void categories(Model model) {
         model.addAttribute("categories", List.of("study", "seminar", "hobby", "social"));
-    }
+    }*/
 
 
     /**
