@@ -844,7 +844,9 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
     (스프링부트는 웹브라우저를 통해서 웹 페이지를 요청할 경우, <br/>
     기본적으로 html 또는 xml로 Accept 헤더가 들어간다.<br/>
     그렇지 않고, 콘솔에서 curl을 쓰거나, postman을 사용하거나 하는 경우에는 json으로 응답이 보내진다.<br/>
-    '웹브라우저=사람', '콘솔=기계'라고 생각해서 읽기 좋은 형태로 보내주는 것.)<br/>
+    '웹브라우저=사람', '콘솔=기계'라고 생각해서 읽기 좋은 형태로 보내주는 것.<br/>
+    그래서 테스트 코드에서 요청을 보낼때에도 화면에 나타내는게 아니기 때문에<br/>
+    Accept 헤더를 설정하지 않아도 json 형태로 응답을 보낸다.)<br/>
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
