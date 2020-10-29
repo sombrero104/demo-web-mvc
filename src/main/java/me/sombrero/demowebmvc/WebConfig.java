@@ -1,11 +1,14 @@
 package me.sombrero.demowebmvc;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -32,5 +35,21 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new VisitTimeInterceptor());
     }
+
+    /**
+     * MessageConverter 추가. (기본 MessageConverter들을 사용하면서 동시에 추가만 하고 싶을 경우.)
+     */
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+    }
+
+    /**
+     * MessageConverter 설정. (기본 MessageConverter들을 없애고 아예 새로 MessageConverter들을 등록할 경우.)
+     */
+    /*@Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+
+    }*/
 
 }
