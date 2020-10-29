@@ -1175,5 +1175,6 @@ public class EventApi {
 - 특정 패키지 이하의 컨트롤러에만 적용하기.
 - 특정 클래스 타입에만 적용하기. 
 
+https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-controller-advice <br/>
 
 <br/><br/><br/>
