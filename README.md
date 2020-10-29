@@ -1022,7 +1022,7 @@ public class EventValidator implements Validator {
 }
 </pre>
 화면에서 name에 'aaa'를 입력하면 우리가 설정한 에러 문구가 나온다. <br/><br/>
-<img src="./images/validator.png" width="50%"><br/><br/>
+<img src="./images/validator.png" width="60%"><br/><br/>
 
 ### * 잠깐, 포매터?
 아래와 같이 날짜를 변환해주는 포매터가 기본으로 등록이 되어 있다.<br/>
