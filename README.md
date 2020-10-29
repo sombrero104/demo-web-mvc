@@ -738,6 +738,8 @@ public class EventApi {
     요청헤더의 Content-Type을 보고 여러 HttpMessageConverter 중에.. <br/>
     JSON을 컨버팅할 수 있는 컨버터(MappingJackson2HttpMessageConverter)를 선택해서<br/>
     JSON 본문을 파라미터에 정의한 객체로 변환해준다.  <br/>
+    - 스프링을 사용하면 Jackson 라이브러리(Jackson2ObjectMapper등을 사용할 수 있는 라이브러리)가 기본적으로 들어가있다. <br/>
+        때문에 MappingJackson2HttpMessageConverter가 기본적으로 등록이 된다.  <br/>
 <pre>
 protected final void addDefaultHttpMessageConverters(List❮HttpMessageConverter❮?❯❯ messageConverters) {
     StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
