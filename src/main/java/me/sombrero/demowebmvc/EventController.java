@@ -42,7 +42,8 @@ public class EventController {
      * 이 컨트롤러의 모든 핸들러 메소드 요청 전에 이 바인더 메소드가 실행된다.
      * WebDataBinder 인자는 반드시 있어야 한다.
      */
-    @InitBinder
+    // @InitBinder
+    @InitBinder("event") // 'event'라는 이름의 모델 애트리뷰트를 바인딩 받을 때에만 @InitBinder를 사용하도록 설정할 수 있다.
     public void initEventBinder(WebDataBinder webDataBinder) {
         // 받고 싶지 않은 필드 값을 걸러낼 수 있다.
         // (원치 않는 데이터가 수정이 될수도 있기 때문에..)
