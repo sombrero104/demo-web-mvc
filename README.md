@@ -739,7 +739,7 @@ public class EventApi {
         Jackson 라이브러리(Jackson2ObjectMapper등을 사용할 수 있는 라이브러리)가 기본적으로 들어가있다. <br/>
         때문에 MappingJackson2HttpMessageConverter가 기본적으로 등록이 된다.  <br/>
 
-## 스프링에서 기본 HttpMessageConverter들이 등록되는 곳. 
+## * 스프링에서 기본 HttpMessageConverter들이 등록되는 곳. 
 RequestMappingHandlerAdapter의 생성자를 보면 <br/>
 RequestMappingHandlerAdapter를 생성할 때 이미 기본 컨버터들을 등록한다.  <br/>
 스프링이 추가적으로 컨버터들을 등록할 때에는..  <br/>
