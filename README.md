@@ -836,7 +836,9 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
 
 # @ResponseBody & ResponseEntity
 ## @RequestBody
-- 데이터를 HttpMessageConverter를 사용해 응답 본문 메시지로 보낼 때 사용한다. 
+- 데이터를 HttpMessageConverter를 사용해 응답 본문 메시지로 보낼 때 사용한다. <br/>
+    (HttpMessageConverter를 사용해서 핸들러 메소드에서 리턴하는 값을 <br/>
+    응답 본문에 있는 메세지로 변환을 한다.)<br/>
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
