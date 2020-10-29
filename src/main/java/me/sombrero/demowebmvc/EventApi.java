@@ -94,6 +94,8 @@ public class EventApi {
 
         // ok()와 같이 기본적으로 자주 쓰이는 메소드들은 팩토리 메소드로 제공한다.
         return ResponseEntity.ok(event);
+        // return ResponseEntity.ok().body(event);
+        // return ResponseEntity.ok().build();
     }
 
 }
