@@ -924,6 +924,25 @@ public void createEvent() throws Exception {
     - RequestToViewNameTranslator
 ## @ModelAttribute 메소드
 <pre>
+/**
+ * [ @ModelAttribute 메소드 ]
+ * 이 컨트롤러 내의 모든 핸들러의 모델에 동일하게 애트리뷰트를 추가하고 싶을 경우.
+ * 예를 들어, 아래와 같이 공통적인 카테고리를 추가하고 싶은 경우.
+ */
+/*@ModelAttribute("categories")
+public List❮String❯ categories(Model model) {
+    return List.of("study", "seminar", "hobby", "social");
+}*/
+@ModelAttribute
+public void categories(Model model) {
+    model.addAttribute("categories", List.of("study", "seminar", "hobby", "social"));
+}
+</pre>
+테스트 코드로 출력했을 때 결과. 
+<pre>
+ModelAndView:
+        Attribute = categories
+            value = [study, seminar, hobby, social]
 </pre>
 
 <br/><br/><br/>

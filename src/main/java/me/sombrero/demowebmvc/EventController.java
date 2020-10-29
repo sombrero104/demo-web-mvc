@@ -32,6 +32,24 @@ import java.util.*;
 public class EventController {
 
     /**
+     * [ @ModelAttribute 메소드 ]
+     * 이 컨트롤러 내의 모든 핸들러의 모델에 동일하게 애트리뷰트를 추가하고 싶을 경우.
+     * 예를 들어, 아래와 같이 공통적인 카테고리를 추가하고 싶은 경우.
+     */
+    /*@ModelAttribute("categories")
+    public List<String> categories(Model model) {
+        return List.of("study", "seminar", "hobby", "social");
+    }*/
+    @ModelAttribute
+    public void categories(Model model) {
+        model.addAttribute("categories", List.of("study", "seminar", "hobby", "social"));
+    }
+
+
+
+
+
+    /**
      * HTTP Method를 지정하지 않으면 모든 HTTP Method를 다 허용함.
      */
     // @RequestMapping("/hello")
