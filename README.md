@@ -1131,7 +1131,7 @@ public String eventsFormName(Model model) {
 
 <img src="./images/exceptionHandler.png" width="50%"><br/><br/>
 
-### * 여러 에러를 같이 처리하고 싶은 경우. 
+### * 여러 에러를 같이 처리하고 싶은 경우? 
 <pre>
 @Controller
 @SessionAttributes({"event"})
