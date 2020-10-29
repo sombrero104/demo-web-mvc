@@ -918,8 +918,9 @@ public void createEvent() throws Exception {
 
 # 모델: @ModelAttribute 또 다른 사용법
 ## @ModelAttribute의 다른 용법
-- @RequestMapping을 사용한 핸들러 메소드의 아규먼트에 사용하기.
-- @Controller 또는 @ControllerAdvice를 사용한 클래스에서 모델 정보를 초기화할 때 사용한다.
+- @RequestMapping을 사용한 핸들러 메소드의 아규먼트에 사용하기. 
+- @ModelAttribute 메소드를 이용해서 @Controller 또는 @ControllerAdvice를 사용한 클래스에서 <br/>
+    모델 정보를 초기화할 때 사용한다.<br/>
 - @RequestMapping과 같이 사용하면 해당 메소드에서 리턴하는 객체를 모델에 넣어준다.
     - RequestToViewNameTranslator
 ## @ModelAttribute 메소드
