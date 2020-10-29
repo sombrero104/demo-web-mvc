@@ -970,6 +970,74 @@ public void getEvents() throws Exception {
 ModelAndView:
         Attribute = categories
             value = [study, seminar, hobby, social]
+</pre><br/><br/><br/><br/>
+
+# DataBinder: @InitBinder
+특정 컨트롤러에서 바인딩 또는 검증 설정을 변경하고 싶을 때 사용. 
+<pre>
+@Controller
+@SessionAttributes({"event"})
+public class EventController {
+    /**
+     * [ @InitBinder ]
+     * 바인더를 커스텀하게 설정하기.
+     * 이 컨트롤러의 모든 핸들러 메소드 요청 전에 이 바인더 메소드가 실행된다.
+     * WebDataBinder 인자는 반드시 있어야 한다.
+     */
+    @InitBinder
+    public void initEventBinder(WebDataBinder webDataBinder) {
+        // 받고 싶지 않은 필드 값을 걸러낼 수 있다.
+        // (원치 않는 데이터가 수정이 될수도 있기 때문에..)
+        // 아래처럼 설정하면 폼에서 id 값을 입력하더라도 요청 받을 때에는 null로 받는다.
+        webDataBinder.setDisallowedFields("id");
+        // webDataBinder.addCustomFormatter(...); // 직접 커스텀한 포매터 등록.
+        webDataBinder.setValidator(new EventValidator()); // 커스텀한 Validator 등록. 
+    }
+    ...
+}
+</pre>
+아래는 커스텀한 Validator 클래스이다. 
+<pre>
+public class EventValidator implements Validator {
+
+    /**
+     * 어떠한 도메인 클래스에 대한 validation을 지원하는 것인지를 설정.
+     */
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return Event.class.isAssignableFrom(clazz);
+    }
+
+    /**
+     * Event 객체의 name이 'aaa'인 경우, 거부하는 메시지를 보낸다.
+     */
+    @Override
+    public void validate(Object target, Errors errors) {
+        Event event = (Event)target;
+        if(event.getName().equalsIgnoreCase("aaa")) {
+            errors.rejectValue("name", "wrongValue", "the value is not allowed");
+        }
+    }
+
+}
+</pre>
+
+### * 잠깐, 포매터?
+아래와 같이 날짜를 변환해주는 포매터가 기본으로 등록이 되어 있다.<br/>
+만약, 커스텀한 포매터를 만든 경우, 위에서 정의한 @InitBinder 메소드에서 커스텀한 포매터를 추가할 수도 있다. <br/>
+<pre>
+public class Event {
+    /**
+     * @DateTimeFormat
+     * 이 애노테이션을 이해하는 포매터가 기본적으로 이미 등록되어 있기 때문에 사용가능하다.
+     * 폼에서 문자열로 입력해도 자동으로 LocalDate 타입으로 변환해준다.
+     */
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate startDate; // 날짜만 받고 싶은 경우.
+    // private LocalDateTime startDateTime; // 시간까지 받고 싶은 경우.
+    ...
+}
 </pre>
 
 <br/><br/><br/>

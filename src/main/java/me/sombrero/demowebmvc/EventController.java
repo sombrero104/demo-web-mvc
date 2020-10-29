@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -30,6 +31,25 @@ import java.util.*;
 // @RequestMapping("/hello")
 @SessionAttributes({"event"})
 public class EventController {
+
+    /**
+     * [ @InitBinder ]
+     * 바인더를 커스텀하게 설정하기.
+     * 이 컨트롤러의 모든 핸들러 메소드 요청 전에 이 바인더 메소드가 실행된다.
+     * WebDataBinder 인자는 반드시 있어야 한다.
+     */
+    @InitBinder
+    public void initEventBinder(WebDataBinder webDataBinder) {
+        // 받고 싶지 않은 필드 값을 걸러낼 수 있다.
+        // (원치 않는 데이터가 수정이 될수도 있기 때문에..)
+        // 아래처럼 설정하면 폼에서 id 값을 입력하더라도 요청 받을 때에는 null로 받는다.
+        webDataBinder.setDisallowedFields("id");
+        // webDataBinder.addCustomFormatter(...); // 직접 커스텀한 포매터 등록.
+        webDataBinder.setValidator(new EventValidator()); // 커스텀한 Validator 등록.
+    }
+
+
+
 
     /**
      * [ @ModelAttribute 메소드 ]
