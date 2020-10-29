@@ -673,6 +673,7 @@ public class FileControllerTest {
 
 ### 파일 다운로드
 ResponseEntity<Resource>로 파일에 대한 헤더정보와 body에 resource를 담아서 반환한다. <br/> 
+현재 예제에서는 text.png 파일을 /resource 밑에 저장해두었다. 그래서 classpath:로 찾는다. <br/> 
 <pre>
 /**
  * 파일 다운로드
