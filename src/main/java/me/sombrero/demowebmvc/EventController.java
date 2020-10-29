@@ -541,6 +541,8 @@ public class EventController {
      */
     @GetMapping("/events/form/name")
     public String eventsFormName(Model model) {
+        // throw new EventException();
+
         model.addAttribute("event", new Event());
         // @SessionAttributes({"event"}) 설정으로 인해 위 medel에 저장된 event가 세션에도 들어감.
         // 때문에 form-name 페이지에서 값을 수정하면 세션에도 동일하게 적용됨.

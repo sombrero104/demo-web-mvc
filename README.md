@@ -1118,4 +1118,15 @@ public class EventController {
     ...
 }
 </pre>
+우리가 만든 EventException을 발생시켜 보자. 
+<pre>
+@GetMapping("/events/form/name")
+public String eventsFormName(Model model) {
+    throw new EventException();
+}
+</pre>
+실행하면 에러페이지가 뜨고 @ExceptionHandler에서 설정한 메세지가 나오는 것을 확인할 수 있다.
+<img src="./images/exceptionHandler.png" width="60%"><br/>
+<br/><br/><br/><br/>
+
 <br/><br/><br/>
