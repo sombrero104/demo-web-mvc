@@ -1097,4 +1097,25 @@ MVC에서 어떤 요청을 처리하다가.. <br/>
 - 지원하는 리턴 값
 - REST API의 경우 응답 본문에 에러에 대한 정보를 담아주고,<br/>
     상태 코드를 설정하려면, ResponseEntity를 주로 사용한다. <br/>
+    
+커스텀한 에러를 직접 만든다.<br/>
+현재는 RuntimeException를 상속받는 EventException를 만들었다. <br/>
+<pre>
+public class EventException extends RuntimeException {
+}
+</pre>
+컨트롤러에 위에서 만든 EventException를 받는 @ExceptionHandler 메소드를 추가한다.<br/>
+이 에러가 발생하면 error 페이지를 보여준다. <br/>
+<pre>
+@Controller
+@SessionAttributes({"event"})
+public class EventController {
+    @ExceptionHandler
+    public String eventErrorHandler(EventException eventException, Model model) {
+        model.addAttribute("message", "event error");
+        return "error"; // error 페이지 뷰를 보여준다. 
+    }
+    ...
+}
+</pre>
 <br/><br/><br/>

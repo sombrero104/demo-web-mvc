@@ -33,6 +33,14 @@ import java.util.*;
 @SessionAttributes({"event"})
 public class EventController {
 
+    @ExceptionHandler
+    public String eventErrorHandler(EventException eventException, Model model) {
+        model.addAttribute("message", "event error");
+        return "error"; // error 페이지 뷰를 보여준다.
+    }
+
+
+
     @Autowired
     EventValidator eventValidator; // 커스텀한 Validator를 @InitBinder로 등록하지 않고 빈으로 등록하는 방법.
 
