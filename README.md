@@ -1170,10 +1170,14 @@ public class EventApi {
 - @InitBinder
 - @ModelAttribute
 
-적용할 범위를 지정할 수도 있다.
+### @ControllerAdvice를 적용할 범위를 지정할 수도 있다.
 - 특정 애노테이션을 가지고 있는 컨트롤러에만 적용하기.
 - 특정 패키지 이하의 컨트롤러에만 적용하기.
 - 특정 클래스 타입에만 적용하기. 
+
+### @RestControllerAdvice
+@RestControllerAdvice도 @ControllerAdvice와 똑같다.<br/>
+단지 @ReesponseBody만 추가적으로 붙어있을 뿐.. <br/>
 
 https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-controller-advice <br/>
 
