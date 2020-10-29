@@ -832,7 +832,7 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
     // 저장 후 저장된 아이디를 가지고 있는 event를 리턴.
     return event;
 }
-</pre><br/><br/>
+</pre><br/><br/><br/><br/>
 
 # @ResponseBody & ResponseEntity
 ## @RequestBody
