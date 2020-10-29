@@ -850,6 +850,9 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
+
+아래처럼 상태코드와 event 객체를 응답으로 보낼 수 있다.<br/>
+에러가 있는 경우에는 badRequest 응답 코드를 보낸다. <br/>
 <pre>
 /**
  * ResponseEntity❮T❯
@@ -871,6 +874,26 @@ public ResponseEntity❮Event❯ createEvent(@RequestBody @Valid Event event, Bi
     
     // 좀 더 세밀한 응답코드로 보내고 싶은 경우.. 
     // return new ResponseEntity❮Event❯(event, HttpStatus.CREATED); // 201 Created 응답코드로 보낸다. 
+}
+</pre>
+아래는 BadRequest 테스트 코드이다. 
+<pre>
+/**
+ * BadRequest 테스트. 
+ */
+@Test
+public void createEvent() throws Exception {
+    Event event = new Event();
+    event.setName("sombrero104");
+    event.setLimit(-20);
+
+    String jsonStr = objectMapper.writeValueAsString(event); // ObjectMapper로 Event 객체를 JSON 문자열로 변환.
+
+    mockMvc.perform(post("/api/events")
+            .contentType(MediaType.APPLICATION_JSON_UTF8) // 보내는 Content-Type이 무엇인지 알려줘야 한다. (그래야 맞는 컨버터가 선택되어 실행됨.)
+            .content(jsonStr)) // 본문(body)에 JSON 문자열을 보낸다.
+            .andDo(print())
+            .andExpect(status().isBadRequest());
 }
 </pre>
 

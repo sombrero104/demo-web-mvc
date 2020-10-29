@@ -45,6 +45,9 @@ public class EventApiTest {
                 .andExpect(jsonPath("limit").value(20));
     }*/
 
+    /**
+     * BadRequest 테스트.
+     */
     @Test
     public void createEvent() throws Exception {
         Event event = new Event();
