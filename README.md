@@ -1097,8 +1097,8 @@ MVC에서 어떤 요청을 처리하다가.. <br/>
 - 지원하는 리턴 값:<br/>
     REST API의 경우 응답 본문에 에러에 대한 정보를 담아주고,<br/>
     상태 코드를 설정하려면, ResponseEntity를 주로 사용한다. <br/>
-<br/>
-    
+
+## 직접 커스텀한 에러를 만들어서, 에러 페이지 보여주기. 
 먼저, 커스텀한 에러를 직접 만든다.<br/>
 현재는 RuntimeException를 상속받는 EventException를 만들었다. <br/>
 <pre>
