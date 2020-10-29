@@ -901,5 +901,19 @@ public void createEvent() throws Exception {
 }
 </pre><br/><br/><br/><br/>
 
+## 기타 핸들러 메소드 정리
+- 다루지 못한 내용 
+    - @JsonView: https://www.youtube.com/watch?v=5QyXswB_Usg&t=188s 
+    - PushBuilder: HTTP/2, 스프링5 <br/>
+    (HTTP/2는 서로 양방향으로 통신이 가능. <br/>
+    front쪽에서 요청하지 않아도 서버가 원하면 브라우저쪽으로 push를 할 수 있음.<br/>
+    예를 들어, html에서 첫 요청에 대한 응답으로 보낸 어떠한 데이터에서 <br/>
+    또다른 요청을 해서 그 내용을 채워줘야 되는 경우, <br/>
+    브라우저단에서 요청을 보내기 전에 미리 서버가 바로 push를 해줄 수 있다.)<br/>
+- 과제
+    - 프로젝트 코드 분석. 
+    - https://github.com/spring-projects/spring-petclinic
+    - 컨트롤러 코드 위주로..
+    
 
 <br/><br/><br/>
