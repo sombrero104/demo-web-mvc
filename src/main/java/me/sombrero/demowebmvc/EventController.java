@@ -46,6 +46,17 @@ public class EventController {
     }
 
 
+    /**
+     * [ 핸들러 메소드에 @ModelAttribute ]
+     * 핸들러 메소드에 @ModelAttribute를 붙이면
+     * 이 핸들러 메소드가 리턴하는 객체를 Model에 자동으로 담아준다.
+     */
+    @GetMapping("/modelTest")
+    @ModelAttribute
+    public Event modelTest() {
+        return new Event();
+    }
+
 
 
 
