@@ -1024,6 +1024,23 @@ public class EventValidator implements Validator {
 화면에서 name에 'aaa'를 입력하면 우리가 설정한 에러 문구가 나온다. <br/><br/>
 <img src="./images/validator.png" width="60%"><br/><br/>
 
+### 혹은, @InitBinder를 사용하지 않고, 커스텀한 Validator를 빈으로 등록해서 사용할 수도 있다. 
+<pre>
+@Component // 커스텀한 Validator 자체를 빈으로 등록해서 사용해도 된다.
+public class EventValidator implements Validator {
+    ...
+}
+</pre>
+<pre>
+@Controller
+@SessionAttributes({"event"})
+public class EventController {
+    @Autowired
+    EventValidator eventValidator; // 커스텀한 Validator를 주입 받는다.
+    ...
+}
+</pre>
+
 ### * 잠깐, 포매터?
 아래와 같이 날짜를 변환해주는 포매터가 기본으로 등록이 되어 있다.<br/>
 만약, 커스텀한 포매터를 만든 경우, 위에서 정의한 @InitBinder 메소드에서 커스텀한 포매터를 추가할 수도 있다. <br/>

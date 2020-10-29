@@ -1,8 +1,10 @@
 package me.sombrero.demowebmvc;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@Component // 커스텀한 Validator 자체를 빈으로 등록해서 사용해도 된다.
 public class EventValidator implements Validator {
 
     /**

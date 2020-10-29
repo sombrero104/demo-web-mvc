@@ -1,5 +1,6 @@
 package me.sombrero.demowebmvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -32,6 +33,12 @@ import java.util.*;
 @SessionAttributes({"event"})
 public class EventController {
 
+    @Autowired
+    EventValidator eventValidator; // 커스텀한 Validator.
+
+
+
+
     /**
      * [ @InitBinder ]
      * 바인더를 커스텀하게 설정하기.
@@ -45,7 +52,7 @@ public class EventController {
         // 아래처럼 설정하면 폼에서 id 값을 입력하더라도 요청 받을 때에는 null로 받는다.
         webDataBinder.setDisallowedFields("id");
         // webDataBinder.addCustomFormatter(...); // 직접 커스텀한 포매터 등록.
-        webDataBinder.setValidator(new EventValidator()); // 커스텀한 Validator 등록.
+        // webDataBinder.setValidator(new EventValidator()); // 커스텀한 Validator 등록.
     }
 
 
