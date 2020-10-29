@@ -1075,4 +1075,17 @@ public class Event {
 }
 </pre>
 
+### @InitBinder("모델 애트리뷰트 이름")
+@InitBinder에 모델 애트리뷰트 이름을 주면, <br/>
+해당 이름의 모델 애트리뷰트를 바인딩 받을 때에만 @InitBinder를 사용하도록 설정할 수 있다.<br/>
+모델 애트리뷰트마다 다른 @InitBinder 설정을 하고 싶을 때 사용한다. <br/>
+(예를 들어, 'owner'라는 모델 애트리뷰트에는 id 필드값을 받지 않게 설정하고,<br/>
+'pet'이라는 모델 애트리뷰트에는 커스텀한 Validator를 설정하고 싶은 경우.)<br/>
+<pre>
+@InitBinder("event") // 'event'라는 이름의 모델 애트리뷰트를 바인딩 받을 때에만 @InitBinder를 사용하도록 설정할 수 있다.
+public void initEventBinder(WebDataBinder webDataBinder) {
+    ...
+}
+</pre><br/><br/><br/><br/>
+
 <br/><br/><br/>
