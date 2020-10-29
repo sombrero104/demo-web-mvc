@@ -1129,9 +1129,9 @@ public String eventsFormName(Model model) {
 실행하면 직접 만든 에러페이지가 뜨고,<br/>
 @ExceptionHandler에서 우리가 직접 작성했던 메세지가 나오는 것을 확인할 수 있다.<br/>
 
-<img src="./images/exceptionHandler.png" width="50%"><br/>
+<img src="./images/exceptionHandler.png" width="50%"><br/><br/>
 
-### 여러 에러를 같이 처리하고 싶은 경우. 
+### * 여러 에러를 같이 처리하고 싶은 경우. 
 <pre>
 @Controller
 @SessionAttributes({"event"})
