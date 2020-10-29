@@ -19,7 +19,9 @@ import javax.validation.Valid;
 public class EventApi {
 
     @ExceptionHandler
-    public ResponseEntity
+    public ResponseEntity errorHandler() {
+        return
+    }
 
 
 
