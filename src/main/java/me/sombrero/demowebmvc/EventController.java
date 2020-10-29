@@ -50,9 +50,11 @@ public class EventController {
      * [ 핸들러 메소드에 @ModelAttribute ]
      * 핸들러 메소드에 @ModelAttribute를 붙이면
      * 이 핸들러 메소드가 리턴하는 객체를 Model에 자동으로 담아준다.
+     * 뷰 이름은 RequestToViewNameTranslator가 요청의 이름과 일치하는 뷰를 리턴해준다.
+     * (아래 예제에서는 '/modelTest'가 된다.)
      */
     @GetMapping("/modelTest")
-    @ModelAttribute
+    @ModelAttribute // 생략해도 된다.
     public Event modelTest() {
         return new Event();
     }
