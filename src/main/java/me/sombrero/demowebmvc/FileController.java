@@ -58,7 +58,7 @@ public class FileController {
         Resource resource = resourceLoader.getResource("classpath:" + filename); // 다운로드 받을 파일.
         File file = resource.getFile();
 
-        Tika tika = new Tika(); // 빈으로 등록해서 사용해도 됨.
+        Tika tika = new Tika(); // Tika를 빈으로 등록해서 사용해도 됨.
         String mediaType = tika.detect(file); // 티카 라이브러리로 미디어 타입 알아내기.
 
         return ResponseEntity.ok() // 응답코드 200 정상.
