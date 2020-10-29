@@ -842,7 +842,9 @@ public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingR
 - 요청할 때 보내온 Accept 헤더를 보고 HttpMessageConverter 중에 어떤 컨버터를 사용할지 선택한다. <br/>
     (요청할 때 어떠한 미디어 타입의 응답을 원하는지 Accept 헤더에 정의해줄 수 있다.)<br/>
     (스프링부트는 웹브라우저를 통해서 웹 페이지를 요청할 경우, <br/>
-    기본적으로 html 또는 xml로 Accept 헤더가 들어간다.)<br/>
+    기본적으로 html 또는 xml로 Accept 헤더가 들어간다.<br/>
+    그렇지 않고, 콘솔에서 curl을 쓰거나, postman을 사용하거나 하는 경우에는 json으로 응답이 보내진다.<br/>
+    '웹브라우저=사람', '콘솔=기계'라고 생각해서 읽기 좋은 형태로 보내주는 것.)<br/>
 - @RestController 사용 시 자동으로 모든 핸들러 메소드에 적용 된다. 
 ## ResponseEntity
 - 응답 헤더 상태 코드 본문을 직접 다루고 싶은 경우에 사용한다. 
